@@ -4,17 +4,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<title>Insert title here</title>
 
-<!-- CSS -->
-<link rel="stylesheet" href="assets/css/bootstrap.min.css">
-<link rel="stylesheet" href="assets/css/custom_app.css">
+	<!-- CSS -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/custom_app.css">
 
-<!--JS -->
-<script src="assets/jquery/jquery.js"></script>
-<script src="assets/js/customapp.js"></script>
-<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+	<!--JS -->
+	<script src="assets/jquery/jquery.js"></script>
+	<script src="assets/js/customapp.js"></script>
+	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
 
 </head>
 <body>
