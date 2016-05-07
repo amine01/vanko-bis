@@ -72,8 +72,7 @@
 
 						<tr>
 							<td><strong>Poste Occupé</strong></td>
-							<td><c:out
-									value="${personne.personneFonctions.get(0).fonction.fonction}" /></td>
+							<td></td>
 						</tr>
 					</tbody>
 				</table>
@@ -84,7 +83,6 @@
 		
 		<div class="row">
 			<div class="col-sm-5">
-				<%-- <c:if test="${personne.surnoms.size()>0}"><h3 style="margin:0px;text-align:center">Surnoms</h3></c:if> --%>
 				<c:if test="${personne.surnoms.size()>0}">
 
 					<table class="table table-striped" >

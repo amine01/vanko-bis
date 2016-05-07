@@ -19,7 +19,14 @@ public class Mail extends UrlEntity {
 	
 	@ManyToOne(optional=false)
 	private Personne personne;
+	
+	public Mail() {
+		
+	}
 
+	
+	
+	
 	// Getters & Setters
 
 	public String getEmail() {

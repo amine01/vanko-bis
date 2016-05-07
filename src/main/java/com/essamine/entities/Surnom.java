@@ -12,8 +12,14 @@ public class Surnom extends UrlEntity {
 	@Column
 	@NotBlank
 	private String surnom;
-	@ManyToOne(optional=false)
+	@ManyToOne
 	private Personne personne;
+	
+	
+	
+	public Surnom() {
+	
+	}
 
 	// Getters & Setters
 	public String getSurnom() {

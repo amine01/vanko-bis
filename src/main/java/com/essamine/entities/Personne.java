@@ -43,8 +43,14 @@ public class Personne extends UrlEntity {
 	@OneToMany(mappedBy="personne")
 	@Valid
 	private List<PersonneFonction> personneFonctions;
-
+	
+	
+	
+	
 	// Getters & Setters
+
+	public Personne() {
+	}
 
 	public String getNom() {
 		return nom;

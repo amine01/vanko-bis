@@ -32,6 +32,12 @@ public class PersonneFonction extends UrlEntity {
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
 	private Date dateFin;
+	
+	
+	
+	
+	public PersonneFonction() {
+	}
 
 	// Getters & Setters
 	public Date getDateDebut() {

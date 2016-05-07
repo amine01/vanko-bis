@@ -70,12 +70,10 @@ public class PersonneController {
 	@Autowired
 	PersonneFonctionRepository personneFonctionRepository;
 
-	
-//	
-	@InitBinder     
-	public void initBinder(WebDataBinder binder){
-	     binder.registerCustomEditor(       Date.class,     
-	                         new CustomDateEditor(new SimpleDateFormat("dd/MM/yyyy"), true, 10));   
+	//
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat("dd/MM/yyyy"), true, 10));
 	}
 
 	// i am here
@@ -96,12 +94,14 @@ public class PersonneController {
 		int noOfRecords = personneRepository.findAll().size();
 		// Number Of Pages
 		int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordPerPage);
-
+		
+		System.out.println("---------------------------------------");
 		System.out.println("page =" + page);
 		System.out.println("personnes.getSize =" + personnes.getSize());
 		System.out.println("noOfRecords =" + noOfRecords);
 		System.out.println("noOfPages =" + noOfPages);
-
+		System.out.println("---------------------------------------");
+		
 		model.addAttribute("personnes", personnes.getContent());
 		model.addAttribute("currentPage", pageR);
 		model.addAttribute("recordPerPage", recordPerPage);
@@ -117,7 +117,6 @@ public class PersonneController {
 		return "personne/add";
 	}
 
-
 	@RequestMapping(value = "/personne", method = RequestMethod.POST)
 	public String processFormAjax(@ModelAttribute(value = "personne") @Valid Personne personne, BindingResult bResult) {
 		System.out.println("processFormAjax");
@@ -128,6 +127,7 @@ public class PersonneController {
 		}
 
 	}
+
 	@RequestMapping(value = "/personne.json", method = RequestMethod.POST, params = "add")
 	public @ResponseBody ValidationResponse addPersonne(@ModelAttribute(value = "personne") @Valid Personne personne,
 			BindingResult bResult) throws IOException {
@@ -139,58 +139,63 @@ public class PersonneController {
 			List<FieldError> allErrors = bResult.getFieldErrors();
 			List<ErrorMessage> errorMesages = new ArrayList<ErrorMessage>();
 			for (FieldError objectError : allErrors) {
-				errorMesages.add(new ErrorMessage(objectError.getField(),objectError.getDefaultMessage()));
-				
-//				errorMesages.add(new ErrorMessage(objectError.getField(),
-//						objectError.getField() + "  " + objectError.getDefaultMessage()));
+				errorMesages.add(new ErrorMessage(objectError.getField(), objectError.getDefaultMessage()));
+
 			}
 			res.setErrorMessageList(errorMesages);
-			// return "personne/add";
 		} else {
 			res.setStatus("SUCCESS");
+//			System.out.println(personneRepository.save(personne).getId());
+			
 			//
-			List<Surnom> surnoms = personne.getSurnoms();
-			List<Mail> emails = personne.getEmails();
-			List<PersonneFonction> personneFonctions = personne.getPersonneFonctions();
-
-			//
-			personne = personneRepository.save(personne);
+//			List<Surnom> surnoms = personne.getSurnoms();
+//			List<Mail> emails = personne.getEmails();
+//			List<PersonneFonction> personneFonctions = personne.getPersonneFonctions();
+//
+//			//
+			personne.setId(personneRepository.save(personne).getId());
+			System.out.println(personne);
+//			System.out.println("controlleur personne : "+personne);
 			Surnom surnom;
 			Mail email;
-
 			PersonneFonction personneFonction;
 			Fonction fonction;
-
-			for (int i = 0; i < surnoms.size(); i++) {
+//
+			for (int i = 0; i < personne.getSurnoms().size(); i++) {
 				surnom = personne.getSurnoms().get(i);
 				surnom.setPersonne(personne);
 				surnomRepository.save(surnom);
+				surnom=null;
 			}
-
-			for (int i = 0; i < emails.size(); i++) {
+//
+			for (int i = 0; i < personne.getEmails().size(); i++) {
 				email = personne.getEmails().get(i);
 				email.setPersonne(personne);
 				emailRepository.save(email);
+				email=null;
 			}
 
-//			for (int i = 0; i < photos.size(); i++) {
-//				photo = personne.getPhotos().get(i);
-//				// upload photo
-//				StringBuilder uniqueFileName = new StringBuilder(
-//						uniqueFileName(photos.get(i).getFile().getOriginalFilename()));
-//				StringBuilder newFileName = new StringBuilder(path + uniqueFileName);
-//				photo.setNomPhoto(uniqueFileName.toString());
-//				photo.setUrlPhoto(newFileName.toString());
-//				System.out.println("getOriginalFilename : " + photos.get(i).getFile().getOriginalFilename());
-//				System.out.println("name : " + photos.get(i).getFile().getName());
-//
-//				uploadFile(photos.get(i).getFile(), newFileName.toString());
-//				//
-//				photo.setPersonne(personne);
-//				photoRepository.save(photo);
-//			}
+			// for (int i = 0; i < photos.size(); i++) {
+			// photo = personne.getPhotos().get(i);
+			// // upload photo
+			// StringBuilder uniqueFileName = new StringBuilder(
+			// uniqueFileName(photos.get(i).getFile().getOriginalFilename()));
+			// StringBuilder newFileName = new StringBuilder(path +
+			// uniqueFileName);
+			// photo.setNomPhoto(uniqueFileName.toString());
+			// photo.setUrlPhoto(newFileName.toString());
+			// System.out.println("getOriginalFilename : " +
+			// photos.get(i).getFile().getOriginalFilename());
+			// System.out.println("name : " +
+			// photos.get(i).getFile().getName());
+			//
+			// uploadFile(photos.get(i).getFile(), newFileName.toString());
+			// //
+			// photo.setPersonne(personne);
+			// photoRepository.save(photo);
+			// }
 
-			for (int i = 0; i < personneFonctions.size(); i++) {
+			for (int i = 0; i < personne.getPersonneFonctions().size(); i++) {
 				personneFonction = personne.getPersonneFonctions().get(i);
 				fonction = fonctionRepository.save(personneFonction.getFonction());
 
@@ -198,6 +203,7 @@ public class PersonneController {
 				personneFonction.setPersonne(personne);
 
 				personneFonctionRepository.save(personneFonction);
+				personneFonction=null;
 
 			}
 			// model.addAttribute("personnes", personneRepository.findAll());
@@ -233,15 +239,15 @@ public class PersonneController {
 
 		return uniqueFileName;
 	}
-	
-//	@InitBinder
-//	public void initBinder(WebDataBinder binder) {
-//		
-////		binder.registerCustomEditor(Date.class, "passport.valid_date", new CustomDateEditor(dateFormat, true));photos[0].file
-//		
-//		binder.registerCustomEditor(byte[].class,"personne.photos[0].file", new ByteArrayMultipartFileEditor());
-//	}
-	
-	
-	
+
+	// @InitBinder
+	// public void initBinder(WebDataBinder binder) {
+	//
+	//// binder.registerCustomEditor(Date.class, "passport.valid_date", new
+	// CustomDateEditor(dateFormat, true));photos[0].file
+	//
+	// binder.registerCustomEditor(byte[].class,"personne.photos[0].file", new
+	// ByteArrayMultipartFileEditor());
+	// }
+
 }

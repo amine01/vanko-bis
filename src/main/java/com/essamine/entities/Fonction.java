@@ -17,7 +17,13 @@ public class Fonction extends UrlEntity {
 	
 	@OneToMany(mappedBy="fonction")
 	private List<PersonneFonction> personneFonctions;
-
+	
+	
+	public Fonction() {
+		
+	}
+	
+	
 	// Getters & Setters
 	public String getFonction() {
 		return fonction;
