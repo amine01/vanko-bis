@@ -38,7 +38,7 @@ public class Personne extends UrlEntity {
 	
 	@OneToMany(mappedBy="personne")
 	@Valid
-	private List<Mail> emails;
+	private List<Mail> mails;
 	
 	@OneToMany(mappedBy="personne")
 	@Valid
@@ -83,15 +83,15 @@ public class Personne extends UrlEntity {
 	public void setSurnoms(List<Surnom> surnoms) {
 		this.surnoms = surnoms;
 	}
+	
 
-	public List<Mail> getEmails() {
-		return emails;
+	public List<Mail> getMails() {
+		return mails;
 	}
 
-	public void setEmails(List<Mail> emails) {
-		this.emails = emails;
+	public void setMails(List<Mail> mails) {
+		this.mails = mails;
 	}
-
 
 	public List<PersonneFonction> getPersonneFonctions() {
 		return personneFonctions;

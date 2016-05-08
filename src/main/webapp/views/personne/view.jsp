@@ -88,12 +88,11 @@
 					<table class="table table-striped" >
 						<thead>
 							<tr >
-								<th colspan="2" style="text-align: center;"><h3 style="margin: 0px 0px">Surnoms</h3></th>
+								<th colspan="2" style="text-align: center"><h3 style="margin: 0px 0px">Surnoms</h3></th>
 							</tr>
 						</thead>
 						<tbody>
 							<c:forEach var="surnom" items="${personne.surnoms}">
-
 								<tr>
 									<td><c:out value="${surnom.surnom}" /></td>
 									<td><a class="btn btn-warning btn-xs" href="${surnom.URL}&edit"><span class="glyphicon glyphicon-pencil"></span></a>
@@ -101,11 +100,16 @@
 								</tr>
 							</c:forEach>
 						</tbody>
+						<tfoot>
+							<tr>
+								<th colspan="2" style="text-align: center"><a href="surnom?id=${personne.id}&add" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-plus"></span></a></th>
+							</tr>
+						</tfoot>
 					</table>
 				</c:if>
 			</div>
 			<div class="col-sm-7">
-				<c:if test="${personne.emails.size()>0}">
+				<c:if test="${personne.mails.size()>0}">
 						<table class="table table-striped">
 						<thead>
 							<tr>
@@ -114,18 +118,28 @@
 								</th>
 							</tr>
 						</thead>
-						<c:forEach var="email" items="${personne.emails}">
+						<tbody>
+							<c:forEach var="mail" items="${personne.mails}">
+								<tr>
+									<td><c:out value="${mail.email}" /></td>
+									<td><c:out value="${mail.polar}" /></td>
+									<td><a class="btn btn-warning btn-xs"
+										href="${mail.URL}&edit"><span
+											class="glyphicon glyphicon-pencil"></span></a> <a
+										href="${mail.URL}&delete" class="btn btn-danger btn-xs"><span
+											class="glyphicon glyphicon-trash"></span></a></td>
+								</tr>
+							</c:forEach>
+						</tbody>
+						<tfoot>
 							<tr>
-								<td><c:out value="${email.email}" /></td>
-								<td><c:out value="${email.pola}" /></td>
-								<td><a class="btn btn-warning btn-xs"
-									href="${email.URL}&edit"><span
-										class="glyphicon glyphicon-pencil"></span></a> <a
-									href="${email.URL}&delete" class="btn btn-danger btn-xs"><span
-										class="glyphicon glyphicon-trash"></span></a></td>
+								<th colspan="3" style="text-align: center"><a
+									href="mail?id=${personne.id}&add"
+									class="btn btn-success btn-xs"><span
+										class="glyphicon glyphicon-plus"></span></a></th>
 							</tr>
-						</c:forEach>
-						</table>
+						</tfoot>
+					</table>
 			
 				</c:if>
 			</div>
@@ -142,12 +156,14 @@
 			<div class="col-sm-8 col-sm-offset-2">
 				<c:if test="${personne.personneFonctions.size()>0}">
 					<table class="table table-striped">
-						<tr>
-							<th>Fonction</th>
-							<th>De</th>
-							<th>A</th>
-							<th></th>
-						</tr>
+						<thead>
+							<tr>
+								<th>Fonction</th>
+								<th>De</th>
+								<th>A</th>
+								<th></th>
+							</tr>
+						</thead>
 						<c:forEach var="personneFonction"
 							items="${personne.personneFonctions}">
 							<tr>
@@ -160,6 +176,14 @@
 								</td>
 							</tr>
 						</c:forEach>
+						<tfoot>
+							<tr>
+								<th colspan="3" style="text-align: center"><a
+									href="personnefonction?id=${personne.id}&add"
+									class="btn btn-success btn-xs"><span
+										class="glyphicon glyphicon-plus"></span></a></th>
+							</tr>
+						</tfoot>
 					</table>
 				</c:if>
 			</div>

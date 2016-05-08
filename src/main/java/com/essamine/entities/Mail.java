@@ -15,9 +15,10 @@ public class Mail extends UrlEntity {
 	private String email;
 	
 	@Column
-	private Boolean pola;
+	@NotBlank
+	private String polar;
 	
-	@ManyToOne(optional=false)
+	@ManyToOne
 	private Personne personne;
 	
 	public Mail() {
@@ -25,9 +26,18 @@ public class Mail extends UrlEntity {
 	}
 
 	
-	
-	
-	// Getters & Setters
+
+	public String getPolar() {
+		return polar;
+	}
+
+
+
+	public void setPolar(String polar) {
+		this.polar = polar;
+	}
+
+
 
 	public String getEmail() {
 		return email;
@@ -37,20 +47,20 @@ public class Mail extends UrlEntity {
 		this.email = email;
 	}
 
-	public Boolean getPola() {
-		return pola;
-	}
-
-	public void setPola(Boolean pola) {
-		this.pola = pola;
-	}
-
 	public Personne getPersonne() {
 		return personne;
 	}
 
 	public void setPersonne(Personne personne) {
 		this.personne = personne;
+	}
+
+
+
+	@Override
+	public boolean equals(Object arg0) {
+		// TODO Auto-generated method stub
+		return super.equals(arg0);
 	}
 	
 	

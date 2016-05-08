@@ -15,8 +15,10 @@ $(document)
 					$form.bind('submit',function(e) {
 										// Ajax validation
 										
-										var $inputs = $form.find('input');
+										var $inputs = $form.find(':input');
+										
 										var data = collectFormData($inputs);
+										console.log("Data ="+data);
 										console.log(data);
 
 										$.ajax({
@@ -115,16 +117,16 @@ var countEmail = 1;
 function addEmail() {
 
 	var divemail = document.createElement("div");
-	divemail.setAttribute("id", "emails["+countEmail+"].email"); 
+	divemail.setAttribute("id", "mails["+countEmail+"].email"); 
 	divemail.className="form-group";
 	
 	var divpola = document.createElement("div");
-	divpola.setAttribute("id", "emails["+countEmail+"].pola"); 
+	divpola.setAttribute("id", "mails["+countEmail+"].polar"); 
 	divpola.className="form-group";
 	/*  */
-	divemail.innerHTML = "<hr width='50%'><lable class='col-sm-2 control-label'><strong>E-mail</strong></lable><div class='col-sm-6'><input placeholder='E-mail' class='form-control' type='text' name='emails["+countEmail+"].email'/></div><div class='col-sm-4'><span class='help-inline'></span></div>";
+	divemail.innerHTML = "<hr width='50%'><lable class='col-sm-2 control-label'><strong>E-mail</strong></lable><div class='col-sm-6'><input placeholder='E-mail' class='form-control' type='text' name='mails["+countEmail+"].email'/></div><div class='col-sm-4'><span class='help-inline'></span></div>";
 
-	divpola.innerHTML = "<lable class='col-sm-2 control-label'><strong>Polariser</strong></lable><div class='col-sm-2'><select class='form-control' path='emails["+countEmail+"].pola'><option value='true'>Oui</option><option value='false'>Non</option></select></div><div col-sm-6><span class='help-inline'></span>";
+	divpola.innerHTML = "<lable class='col-sm-2 control-label'><strong>Polariser</strong></lable><div class='col-sm-2'><select class='form-control' name='mails["+countEmail+"].polar'><option value=''></option><option value='Oui'>Oui</option><option value='Non'>Non</option></select></div><div col-sm-6><span class='help-inline'></span>";
 
 	// lien de suppression du variable
 	countEmail++;
@@ -135,8 +137,8 @@ function addEmail() {
 	
 	divpola.appendChild(removeEmail);
 		
-	document.getElementById('emails').appendChild(divemail);
-	document.getElementById('emails').appendChild(divpola);
+	document.getElementById('mails').appendChild(divemail);
+	document.getElementById('mails').appendChild(divpola);
 	
 	removeEmail.addEventListener('click', function(event) {
 		countEmail--;

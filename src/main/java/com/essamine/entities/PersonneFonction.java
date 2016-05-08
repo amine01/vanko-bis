@@ -8,6 +8,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -18,12 +19,14 @@ public class PersonneFonction extends UrlEntity {
 	@Column
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
+	@NotNull
 	private Date dateDebut;
 
-	@ManyToOne(optional = false)
+	@ManyToOne
+	@Valid
 	private Personne personne;
 
-	@ManyToOne(optional = false)
+	@ManyToOne
 	@Valid
 	private Fonction fonction;
 
@@ -31,6 +34,7 @@ public class PersonneFonction extends UrlEntity {
 	@Column
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
+	@NotNull
 	private Date dateFin;
 	
 	
@@ -71,5 +75,6 @@ public class PersonneFonction extends UrlEntity {
 	public void setFonction(Fonction fonction) {
 		this.fonction = fonction;
 	}
+
 
 }

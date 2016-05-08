@@ -32,8 +32,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.essamine.entities.Mail;
 import com.essamine.entities.Fonction;
+import com.essamine.entities.Mail;
 import com.essamine.entities.Personne;
 import com.essamine.entities.PersonneFonction;
 import com.essamine.entities.Surnom;
@@ -144,6 +144,7 @@ public class PersonneController {
 			}
 			res.setErrorMessageList(errorMesages);
 		} else {
+			System.out.println(personne.getMails().get(0).getPolar());
 			res.setStatus("SUCCESS");
 //			System.out.println(personneRepository.save(personne).getId());
 			
@@ -167,9 +168,11 @@ public class PersonneController {
 				surnomRepository.save(surnom);
 				surnom=null;
 			}
-//
-			for (int i = 0; i < personne.getEmails().size(); i++) {
-				email = personne.getEmails().get(i);
+//			
+				System.out.println("---POLA---> "+personne.getMails().get(0).getPolar());
+			for (int i = 0; i < personne.getMails().size(); i++) {
+				email = personne.getMails().get(i);
+				System.out.println("Pola "+i+" :"+email.getPolar());
 				email.setPersonne(personne);
 				emailRepository.save(email);
 				email=null;

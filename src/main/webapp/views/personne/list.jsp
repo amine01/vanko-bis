@@ -69,8 +69,8 @@
 		
 	<c:if test="${personnes.size()>0}">
 		<table class="table table-striped table-bordered table-hover">
-			<thead>
-				<tr class="bg-info text-center">
+			<thead >
+				<tr class="bg-info text-center" style="text-align: center;">
 					<th >Nom</th>
 					<th >Prénom</th>
 					<th >Date de Naissance</th>
@@ -86,8 +86,8 @@
 						<td><c:out value="${personne.prenom}" /></td>
 						<td><c:out value="${personne.dateNaissance}" /></td>
 						
-						<td><c:out value="${personne.emails.size()}" /></td>
-						<td><c:out value="${personne.personneFonctions.get(0).fonction.fonction}" /></td>
+						<td><c:out value="${personne.mails.size()}" /></td>
+						<%-- <td><c:out value="${personne.personneFonctions.get(0).fonction.fonction}" /></td> --%>
 						
 						<td>
 							<a class="btn btn-warning btn-xs" href="${personne.URL}&edit" title="Modifier"><span class="glyphicon glyphicon-pencil"></span></a>  

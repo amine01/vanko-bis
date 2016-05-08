@@ -46,26 +46,42 @@
 		</nav>
 		<!-- Fin NavBar -->
 
-		<form:form method="POST" action="surnom?edit&id=${surnom.id}" 
-			class="form-horizontal" commandName="surnom">
-			
-			<input type="hidden" value="edit">
-		
-				<spring:bind path="surnom">
-					<div id="surnom" class="form-group">
-						<label for="surnom" class="col-sm-2 control-label">Surnom</label>
-						<div class="col-sm-6">
-							<form:input id="surnom" class="form-control" type="text"
-								path="surnom" placeholder="Surnom" />
-						</div>
-						<div class="col-sm-4">
-							<span class="help-inline"><form:errors path="surnom" /></span>
-						</div>
-					</div>
-				</spring:bind>
-			<button type="submit" class="btn btn-primary">Editer</button>
-			<a class="btn btn-default" href="${surnom.personne.URL}&view">Back</a>
+		<form:form method="POST" action="mail" class="form-horizontal"
+			commandName="mail">
 
+			<input type="hidden" name="add">
+			<input type="hidden" name="personne_id" value="${personne.id}">
+
+			<spring:bind path="email">
+				<div id="email" class="form-group">
+					<label for="email" class="col-sm-2 control-label">E-mail</label>
+					<div class="col-sm-6">
+						<form:input id="email" class="form-control" type="text"
+							path="email" placeholder="E-mail" />
+					</div>
+					<div class="col-sm-4">
+						<span class="help-inline"><form:errors path="email" /></span>
+					</div>
+				</div>
+			</spring:bind>
+			<spring:bind path="polar">
+				<div id="polar" class="form-group">
+					<label for="polar" class="col-sm-2 control-label">Polariser
+						?</label>
+					<div class="col-sm-6">
+						<form:select name="polariser" path="polar" class="form-control">
+						<form:option value="" />
+							<form:option value="Oui" />
+							<form:option value="Non" />
+						</form:select>
+					</div>
+					<div class="col-sm-4">
+						<span class="help-inline"><form:errors path="polar" /></span>
+					</div>
+				</div>
+			</spring:bind>
+			<button type="submit" class="btn btn-primary">ajouter</button>
+			<a class="btn btn-default" href="${personne.URL}&view">Back</a>
 		</form:form>
 	</div>
 </body>
