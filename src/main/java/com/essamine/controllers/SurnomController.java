@@ -54,26 +54,35 @@ public class SurnomController {
 
 	@RequestMapping(value = "/surnom", method = RequestMethod.GET, params = "edit")
 	public String getSurnomtoEdit(@RequestParam long id, Model model) {
-		Surnom surnom = surnomRepository.findOne(id);
-		System.out.println("Get function : " + surnom);
-		model.addAttribute("surnom", surnom);
+		Surnom s = surnomRepository.findOne(id);
+		System.out.println("Get function : " + s);
+		model.addAttribute("surnom", s);
+		model.addAttribute("personne", s.getPersonne());
 		return "surnom/edit";
 	}
 
 	@RequestMapping(value = "/surnom", method = RequestMethod.POST, params = "edit")
-	public ModelAndView editSelectedSurnom(@ModelAttribute(value = "surnom") @Valid Surnom surnom,
-			BindingResult bResult) {
+	public ModelAndView editSelectedSurnom(@RequestParam(required = false) String personne_id,
+			@ModelAttribute(value = "surnom") @Valid Surnom surnom,
+			BindingResult bResult,Model model) {
+	
 		Surnom s = surnomRepository.findOne(surnom.getId());
+		
+		System.out.println("personne_id ="+personne_id);
+		System.out.println("Surnom -> personne_id ="+s.getPersonne().getId());
+		
+		Personne p = personneRepository.findOne(Long.parseLong(personne_id));
+		model.addAttribute("personne", p);
+		
 		if (bResult.hasErrors()) {
-			System.out.println("Failed  = " + surnom.getSurnom() + " ID personne = " + surnom.getPersonne().getId());
 			return new ModelAndView("surnom/edit");
 		}
 		s.setSurnom(surnom.getSurnom());
+		s.setPersonne(p);
 
 		surnomRepository.save(s);
 		return new ModelAndView("redirect:personne?id=" + s.getPersonne().getId() + "&view");
 
-		// }
 	}
 
 }

@@ -32,20 +32,27 @@ public class MailController {
 
 	@RequestMapping(value = "/mail", method = RequestMethod.GET, params = "edit")
 	public String getEmailToEdit(@RequestParam long id, Model model) {
-		Mail mail = emailRepository.findOne(id);
-		model.addAttribute("mail", mail);
+		Mail m = emailRepository.findOne(id);
+		model.addAttribute("mail", m);
+		model.addAttribute("personne", m.getPersonne());
 		return "mail/edit";
 
 	}
 
 	@RequestMapping(value = "/mail", method = RequestMethod.POST, params = "edit")
-	public ModelAndView editSelectedMail(@Valid Mail mail, BindingResult bResult) {
+	public ModelAndView editSelectedMail(@RequestParam(required = false) String personne_id,@Valid Mail mail, BindingResult bResult,Model model) {
+		
 		Mail m = emailRepository.findOne(mail.getId());
+		Personne p = personneRepository.findOne(Long.parseLong(personne_id));
+		
+		model.addAttribute("personne", p);
+		
 		if (bResult.hasErrors()) {
 			return new ModelAndView("mail/edit");
 		}
 		m.setEmail(mail.getEmail());
 		m.setPolar(mail.getPolar());
+		m.setPersonne(p);
 
 		emailRepository.save(m);
 		return new ModelAndView("redirect:personne?id=" + m.getPersonne().getId() + "&view");

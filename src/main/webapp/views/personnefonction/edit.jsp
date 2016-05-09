@@ -51,6 +51,7 @@
 			class="form-horizontal" commandName="personnefonction">
 
 			<input type="hidden" name="edit">
+			<input type="hidden" name="personne_id" value="${personne.id}">
 
 			<spring:bind path="fonction.fonction">
 				<div id="fonction.fonction" class="form-group">
@@ -103,7 +104,7 @@
 
 
 			<button type="submit" class="btn btn-primary">Editer</button>
-			<a class="btn btn-default" href="${personnefonction.personne.URL}&view">Back</a>
+			<a class="btn btn-default" href="${personne.URL}&view">Back</a>
 
 		</form:form>
 	</div>

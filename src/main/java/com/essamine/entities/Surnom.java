@@ -3,6 +3,7 @@ package com.essamine.entities;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.validation.Valid;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -13,6 +14,7 @@ public class Surnom extends UrlEntity {
 	@NotBlank
 	private String surnom;
 	@ManyToOne
+	@Valid
 	private Personne personne;
 	
 	

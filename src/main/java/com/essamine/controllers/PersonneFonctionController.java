@@ -30,11 +30,11 @@ import com.essamine.repositories.PersonneRepository;
 @PropertySource("classpath:info.properties")
 public class PersonneFonctionController {
 
-	 @Autowired
-	 PersonneRepository personneRepository;
-	 
-	 @Autowired
-	 FonctionRepository fonctionRepository;
+	@Autowired
+	PersonneRepository personneRepository;
+
+	@Autowired
+	FonctionRepository fonctionRepository;
 
 	@Autowired
 	PersonneFonctionRepository personneFonctionRepository;
@@ -46,55 +46,66 @@ public class PersonneFonctionController {
 		System.out.println(personnefonction.getDateDebut());
 		System.out.println(personnefonction.getDateFin());
 		model.addAttribute("personnefonction", personnefonction);
+		model.addAttribute("personne", personnefonction.getPersonne());
 		return "personnefonction/edit";
 
 	}
 
 	@RequestMapping(value = "/personnefonction", method = RequestMethod.POST, params = "edit")
-	public ModelAndView editSelectedpersonneFonction(
-			@ModelAttribute(value = "personnefonction") @Valid PersonneFonction personnefonction,
-			BindingResult bResult) {
+	public ModelAndView editSelectedpersonneFonction(@RequestParam(required = false) String personne_id,
+			@ModelAttribute(value = "personnefonction") @Valid PersonneFonction personnefonction, BindingResult bResult,
+			Model model) {
+
+		
+		
+	//	model.addAttribute("personne", p);
 		PersonneFonction pf = personneFonctionRepository.findOne(personnefonction.getId());
+		
+	
+		Personne p = personneRepository.findOne(Long.parseLong(personne_id));
+		model.addAttribute("personne", p);
+		
 		if (bResult.hasErrors()) {
 			return new ModelAndView("personnefonction/edit");
 		}
+
 		pf.getFonction().setFonction(personnefonction.getFonction().getFonction());
 		pf.setDateFin(personnefonction.getDateDebut());
 		pf.setDateDebut(personnefonction.getDateFin());
-
+		pf.setPersonne(p);
+		
 		personneFonctionRepository.save(pf);
 		return new ModelAndView("redirect:personne?id=" + pf.getPersonne().getId() + "&view");
 	}
-	//
-	//
-	//
-	 @RequestMapping(value = "/personnefonction", method = RequestMethod.GET, params ="add")
-	 public String addfonctionpersonneForm(@RequestParam long id, Model model) {
-		 model.addAttribute("personne", personneRepository.findOne(id));
-		 model.addAttribute("personnefonction", new PersonneFonction());
-	 return "personnefonction/add";
-	 }
-	//
-	 @RequestMapping(value = "/personnefonction", method = RequestMethod.POST, params ="add")
-	 public ModelAndView addfonctionPersonne(@RequestParam(required = false) String
-	 personne_id,@ModelAttribute(value = "personnefonction") @Valid PersonneFonction personnefonction,
-	 BindingResult bResult, Model model) {
-	
-	Personne p = personneRepository.findOne(Long.parseLong(personne_id));	
-	 
-	 model.addAttribute("personne", p);
-	 if (bResult.hasErrors()) {
-	 return new ModelAndView("personnefonction/add");
-	 }
-	 Fonction f=fonctionRepository.save(personnefonction.getFonction());
-	 personnefonction.setFonction(f);
-	 personnefonction.setPersonne(p);
-	
-	 
-	 personneFonctionRepository.save(personnefonction);
-	 return new ModelAndView("personne/view");
-	
-	 }
+
+
+	@RequestMapping(value = "/personnefonction", method = RequestMethod.GET, params = "add")
+	public String addfonctionpersonneForm(@RequestParam long id, Model model) {
+		model.addAttribute("personne", personneRepository.findOne(id));
+		model.addAttribute("personnefonction", new PersonneFonction());
+		return "personnefonction/add";
+	}
+
+
+	@RequestMapping(value = "/personnefonction", method = RequestMethod.POST, params = "add")
+	public ModelAndView addfonctionPersonne(@RequestParam(required = false) String personne_id,
+			@ModelAttribute(value = "personnefonction") @Valid PersonneFonction personnefonction, BindingResult bResult,
+			Model model) {
+
+		Personne p = personneRepository.findOne(Long.parseLong(personne_id));
+
+		model.addAttribute("personne", p);
+		if (bResult.hasErrors()) {
+			return new ModelAndView("personnefonction/add");
+		}
+		Fonction f = fonctionRepository.save(personnefonction.getFonction());
+		personnefonction.setFonction(f);
+		personnefonction.setPersonne(p);
+
+		personneFonctionRepository.save(personnefonction);
+		return new ModelAndView("personne/view");
+
+	}
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {

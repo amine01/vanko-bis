@@ -50,6 +50,7 @@
 			class="form-horizontal" commandName="mail">
 
 			<input type="hidden" name="edit">
+			<input type="hidden" name="personne_id" value="${personne.id}">
 
 			<spring:bind path="email">
 				<div id="email" class="form-group">
@@ -80,7 +81,7 @@
 			</spring:bind>
 
 			<button type="submit" class="btn btn-primary">Editer</button>
-			<a class="btn btn-default" href="${mail.personne.URL}&view">Back</a>
+			<a class="btn btn-default" href="${personne.URL}&view">Back</a>
 
 		</form:form>
 	</div>
