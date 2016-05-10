@@ -2,6 +2,7 @@ package com.essamine.entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -14,8 +15,8 @@ public class Fonction extends UrlEntity {
 	@NotBlank
 	private String fonction;
 
-	
-	@OneToMany(mappedBy="fonction")
+	//ajouter
+	@OneToMany(mappedBy="fonction", cascade = CascadeType.REMOVE, orphanRemoval = false)
 	private List<PersonneFonction> personneFonctions;
 	
 	

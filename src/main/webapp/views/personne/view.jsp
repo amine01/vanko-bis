@@ -48,14 +48,15 @@
 
 
 		<div class="row">
-			<div class="col-sm-12" style="height:40px;">
-				<a href="personne?add" class="btn btn-primary">Add Personne</a>
-				<a href="personnes" class="btn btn-primary">Liste des personnes</a>
+			<div class="col-sm-12" style="height: 40px;">
+				<a href="personne?add" class="btn btn-primary">Add Personne</a> <a
+					href="personnes" class="btn btn-primary">Liste des personnes</a>
 			</div>
 		</div>
-		<div class="row"> 
+		<div class="row">
 			<div class="col-sm-4">
-				<img src="http://lorempixel.com/180/130/people/" class="img-circle img-responsive img-center" />
+				<img src="http://lorempixel.com/180/130/people/"
+					class="img-circle img-responsive img-center" />
 			</div>
 			<div class="col-sm-6 ">
 				<table class="table table-striped">
@@ -80,44 +81,60 @@
 		</div>
 
 		<hr>
-		
+
 		<div class="row">
 			<div class="col-sm-5">
-				<c:if test="${personne.surnoms.size()>0}">
 
-					<table class="table table-striped" >
-						<thead>
-							<tr >
-								<th colspan="2" style="text-align: center"><h3 style="margin: 0px 0px">Surnoms</h3></th>
-							</tr>
-						</thead>
+
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th colspan="2" style="text-align: center"><h3
+									style="margin: 0px 0px">Surnoms</h3></th>
+						</tr>
+					</thead>
+					<c:if test="${personne.surnoms.size()>0}">
+
 						<tbody>
 							<c:forEach var="surnom" items="${personne.surnoms}">
 								<tr>
 									<td><c:out value="${surnom.surnom}" /></td>
-									<td><a class="btn btn-warning btn-xs" href="${surnom.URL}&edit"><span class="glyphicon glyphicon-pencil"></span></a>
-									<a href="${surnom.URL}&delete" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></a></td>
+									<td><a class="btn btn-warning btn-xs"
+										href="${surnom.URL}&edit"><span
+											class="glyphicon glyphicon-pencil"></span></a>
+										<form method="post" action="${surnom.URL}&delete"
+											id="frm_delete_surnom">
+											<a class="btn btn-danger btn-xs" data-toggle="modal"
+												data-target="#myModalSurnom" id="idBtbnDeleteSurnom"><span
+												class="glyphicon glyphicon-trash"></span></a>
+										</form></td>
 								</tr>
 							</c:forEach>
 						</tbody>
-						<tfoot>
-							<tr>
-								<th colspan="2" style="text-align: center"><a href="surnom?id=${personne.id}&add" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-plus"></span></a></th>
-							</tr>
-						</tfoot>
-					</table>
-				</c:if>
+					</c:if>
+					<tfoot>
+						<tr>
+							<th colspan="2" style="text-align: center"><a
+								href="surnom?id=${personne.id}&add"
+								class="btn btn-success btn-xs"><span
+									class="glyphicon glyphicon-plus"></span></a></th>
+						</tr>
+					</tfoot>
+
+				</table>
+
 			</div>
 			<div class="col-sm-7">
-				<c:if test="${personne.mails.size()>0}">
-						<table class="table table-striped">
-						<thead>
-							<tr>
-								<th colspan="3" style="text-align: center;">
-									<h3 style="margin: 0px 0px">E-mails</h3>
-								</th>
-							</tr>
-						</thead>
+
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th colspan="3" style="text-align: center;">
+								<h3 style="margin: 0px 0px">E-mails</h3>
+							</th>
+						</tr>
+					</thead>
+					<c:if test="${personne.mails.size()>0}">
 						<tbody>
 							<c:forEach var="mail" items="${personne.mails}">
 								<tr>
@@ -125,87 +142,177 @@
 									<td><c:out value="${mail.polar}" /></td>
 									<td><a class="btn btn-warning btn-xs"
 										href="${mail.URL}&edit"><span
-											class="glyphicon glyphicon-pencil"></span></a> <a
-										href="${mail.URL}&delete" class="btn btn-danger btn-xs"><span
-											class="glyphicon glyphicon-trash"></span></a></td>
+											class="glyphicon glyphicon-pencil"></span></a>
+
+										<form method="post" action="${mail.URL}&delete"
+											id="frm_delete_mail">
+											<a class="btn btn-danger btn-xs" data-toggle="modal"
+												data-target="#myModalMail"><span
+												class="glyphicon glyphicon-trash"></span></a>
+										</form></td>
 								</tr>
 							</c:forEach>
 						</tbody>
-						<tfoot>
-							<tr>
-								<th colspan="3" style="text-align: center"><a
-									href="mail?id=${personne.id}&add"
-									class="btn btn-success btn-xs"><span
-										class="glyphicon glyphicon-plus"></span></a></th>
-							</tr>
-						</tfoot>
-					</table>
-			
-				</c:if>
+					</c:if>
+					<tfoot>
+						<tr>
+							<th colspan="3" style="text-align: center"><a
+								href="mail?id=${personne.id}&add" class="btn btn-success btn-xs"><span
+									class="glyphicon glyphicon-plus"></span></a></th>
+						</tr>
+					</tfoot>
+				</table>
+
+
 			</div>
 		</div>
 
-		
+
 		<hr>
-		<div class="row">
+		<%-- 		<div class="row">
 			<div class="col-sm-12 text-center">
-				<c:if test="${personne.personneFonctions.size()>0}"><h3 style="margin:0px;text-align:center">Postes Occupés</h3></c:if>
+				<c:if test="${personne.personneFonctions.size()>0}">
+					<h3 style="margin: 0px; text-align: center">Postes Occupés</h3>
+				</c:if>
 			</div>
-		</div>
+		</div> --%>
 		<div class="row">
 			<div class="col-sm-8 col-sm-offset-2">
-				<c:if test="${personne.personneFonctions.size()>0}">
-					<table class="table table-striped">
-						<thead>
+
+
+				<!-- 	<tr>
+							<th colspan="3" style="text-align: center;">
+								<h3 style="margin: 0px 0px">E-mails</h3>
+							</th>
+						</tr> -->
+
+
+
+
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th colspan="3" style="text-align: center;"><h3>Postes
+									Occupés</h3></th>
+						</tr>
+						<c:if test="${personne.personneFonctions.size()>0}">
 							<tr>
 								<th>Fonction</th>
 								<th>De</th>
 								<th>A</th>
 								<th></th>
 							</tr>
-						</thead>
+					</thead>
+
+					<tbody>
 						<c:forEach var="personneFonction"
 							items="${personne.personneFonctions}">
 							<tr>
 								<td><c:out value="${personneFonction.fonction.fonction}" /></td>
 								<td><c:out value="${personneFonction.dateDebut}" /></td>
 								<td><c:out value="${personneFonction.dateFin}" /></td>
-								<td>
-									<a href="${personneFonction.URL}&edit" class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-pencil"></span></a> 
-									<a class="btn btn-danger btn-xs"  href="${personneFonction.URL}&delete"> <span class="glyphicon glyphicon-trash"></span></a>
-								</td>
+								<td><a href="${personneFonction.URL}&edit"
+									class="btn btn-warning btn-xs"><span
+										class="glyphicon glyphicon-pencil"></span></a>
+									<form method="post" action="${personneFonction.URL}&delete"
+										id="frm_delete_PersonneFonction">
+
+										<a data-toggle="modal" data-target="#myModalPersonneFonction"
+											class="btn btn-danger btn-xs"><span
+											class="glyphicon glyphicon-trash"></span></a>
+									</form></td>
 							</tr>
 						</c:forEach>
-						<tfoot>
-							<tr>
-								<th colspan="3" style="text-align: center"><a
-									href="personnefonction?id=${personne.id}&add"
-									class="btn btn-success btn-xs"><span
-										class="glyphicon glyphicon-plus"></span></a></th>
-							</tr>
-						</tfoot>
-					</table>
-				</c:if>
+					</tbody>
+					</c:if>
+					<tfoot>
+						<tr>
+							<th colspan="3" style="text-align: center"><a
+								href="personnefonction?id=${personne.id}&add"
+								class="btn btn-success btn-xs"><span
+									class="glyphicon glyphicon-plus"></span></a></th>
+						</tr>
+					</tfoot>
+				</table>
 			</div>
 		</div>
 
-		<!-- 	<hr>
-		<h2>Photos</h2> -->
-		<%-- 	<c:if test="${personne.photos.size()>0}">
-		<table border="1">
-			<tr>
-				<th>Photo</th>
-				<th></th>
-			</tr>
-			<c:forEach var="photo" items="${personne.photos}">
-				<tr>
-					<td><img src="images/${photo.nomPhoto}" alt="Smiley face"
-						width="42" height="42"></td>
-					<td><a href="${photo.URL}&delete"> Delete </a></td>
-				</tr>
-			</c:forEach>
-		</table>
-	</c:if> --%>
+		<!-- modal Surnom-->
+		<div class="modal fade" id="myModalSurnom" tabindex="-1" role="dialog"
+			aria-labelledby="myModalSurnomLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">&times;</button>
+						<h4 class="modal-title">Confirmation Suppression</h4>
+					</div>
+					<div class="modal-body">
+						<p>êtes-vous sûr ?</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary"
+							onclick="$('#frm_delete_surnom').submit();">Oui</button>
+
+						<button type="button" class="btn btn-default" data-dismiss="modal">Non</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Modal -->
+
+
+
+		<!-- modal Mail-->
+		<div class="modal fade" id="myModalMail" tabindex="-1" role="dialog"
+			aria-labelledby="myModalMailLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">&times;</button>
+						<h4 class="modal-title">Confirmation Suppression</h4>
+					</div>
+					<div class="modal-body">
+						<p>êtes-vous sûr ?</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary"
+							onclick="$('#frm_delete_mail').submit();">Oui</button>
+
+						<button type="button" class="btn btn-default" data-dismiss="modal">Non</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Modal -->
+
+
+		<!-- modal PersonneFonction-->
+		<div class="modal fade" id="myModalPersonneFonction" tabindex="-1"
+			role="dialog" aria-labelledby="myModalPersonneFonctionLabel"
+			aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">&times;</button>
+						<h4 class="modal-title">Confirmation Suppression</h4>
+					</div>
+					<div class="modal-body">
+						<p>êtes-vous sûr ?</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary"
+							onclick="$('#frm_delete_PersonneFonction').submit();">Oui</button>
+
+						<button type="button" class="btn btn-default" data-dismiss="modal">Non</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Modal -->
+
 	</div>
 </body>
 </html>

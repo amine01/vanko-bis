@@ -3,6 +3,7 @@ package com.essamine.entities;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
@@ -32,15 +33,17 @@ public class Personne extends UrlEntity {
 	@NotNull
 	private Date dateNaissance;
 
-	@OneToMany(mappedBy="personne")
+	@OneToMany(mappedBy="personne", cascade = CascadeType.ALL, orphanRemoval = true)
 	@Valid
 	private List<Surnom> surnoms;
 	
-	@OneToMany(mappedBy="personne")
+	
+	@OneToMany(mappedBy="personne", cascade = CascadeType.ALL, orphanRemoval = true)
 	@Valid
 	private List<Mail> mails;
 	
-	@OneToMany(mappedBy="personne")
+	//ajouter OUI
+	@OneToMany(mappedBy="personne", cascade = CascadeType.REMOVE, orphanRemoval = true)
 	@Valid
 	private List<PersonneFonction> personneFonctions;
 	

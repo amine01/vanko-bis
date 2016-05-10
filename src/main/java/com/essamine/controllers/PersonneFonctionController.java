@@ -42,9 +42,6 @@ public class PersonneFonctionController {
 	@RequestMapping(value = "/personnefonction", method = RequestMethod.GET, params = "edit")
 	public String getpersonneFonctionToEdit(@RequestParam long id, Model model) {
 		PersonneFonction personnefonction = personneFonctionRepository.findOne(id);
-		System.out.println(personnefonction.getFonction().getFonction());
-		System.out.println(personnefonction.getDateDebut());
-		System.out.println(personnefonction.getDateFin());
 		model.addAttribute("personnefonction", personnefonction);
 		model.addAttribute("personne", personnefonction.getPersonne());
 		return "personnefonction/edit";
@@ -103,12 +100,19 @@ public class PersonneFonctionController {
 		personnefonction.setPersonne(p);
 
 		personneFonctionRepository.save(personnefonction);
-		return new ModelAndView("personne/view");
+		return new ModelAndView("redirect:personne?id="+personnefonction.getPersonne().getId()+"&view");
 
 	}
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat("dd/MM/yyyy"), true, 10));
+	}
+	
+	@RequestMapping(value = "/personnefonction", method = RequestMethod.POST, params = "delete")
+	public String deleteMail(@RequestParam long id) {
+		PersonneFonction personneFonction=personneFonctionRepository.findOne(id);
+		personneFonctionRepository.delete(personneFonction);
+		return "redirect:personne?id="+personneFonction.getPersonne().getId()+"&view";
 	}
 }

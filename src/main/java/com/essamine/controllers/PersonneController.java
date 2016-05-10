@@ -95,12 +95,7 @@ public class PersonneController {
 		// Number Of Pages
 		int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordPerPage);
 		
-		System.out.println("---------------------------------------");
-		System.out.println("page =" + page);
-		System.out.println("personnes.getSize =" + personnes.getSize());
-		System.out.println("noOfRecords =" + noOfRecords);
-		System.out.println("noOfPages =" + noOfPages);
-		System.out.println("---------------------------------------");
+	
 		
 		model.addAttribute("personnes", personnes.getContent());
 		model.addAttribute("currentPage", pageR);
@@ -119,7 +114,7 @@ public class PersonneController {
 
 	@RequestMapping(value = "/personne", method = RequestMethod.POST)
 	public String processFormAjax(@ModelAttribute(value = "personne") @Valid Personne personne, BindingResult bResult) {
-		System.out.println("processFormAjax");
+		
 		if (bResult.hasErrors()) {
 			return "personne/add";
 		} else {
@@ -131,11 +126,11 @@ public class PersonneController {
 	@RequestMapping(value = "/personne.json", method = RequestMethod.POST, params = "add")
 	public @ResponseBody ValidationResponse addPersonne(@ModelAttribute(value = "personne") @Valid Personne personne,
 			BindingResult bResult) throws IOException {
-		System.out.println("/personne");
+		
 		ValidationResponse res = new ValidationResponse();
 		if (bResult.hasErrors()) {
 			res.setStatus("FAIL");
-			System.out.println("hasErrors");
+
 			List<FieldError> allErrors = bResult.getFieldErrors();
 			List<ErrorMessage> errorMesages = new ArrayList<ErrorMessage>();
 			for (FieldError objectError : allErrors) {
@@ -144,19 +139,11 @@ public class PersonneController {
 			}
 			res.setErrorMessageList(errorMesages);
 		} else {
-			System.out.println(personne.getMails().get(0).getPolar());
 			res.setStatus("SUCCESS");
-//			System.out.println(personneRepository.save(personne).getId());
 			
-			//
-//			List<Surnom> surnoms = personne.getSurnoms();
-//			List<Mail> emails = personne.getEmails();
-//			List<PersonneFonction> personneFonctions = personne.getPersonneFonctions();
-//
+
 //			//
 			personne.setId(personneRepository.save(personne).getId());
-			System.out.println(personne);
-//			System.out.println("controlleur personne : "+personne);
 			Surnom surnom;
 			Mail email;
 			PersonneFonction personneFonction;
@@ -169,10 +156,8 @@ public class PersonneController {
 				surnom=null;
 			}
 //			
-				System.out.println("---POLA---> "+personne.getMails().get(0).getPolar());
 			for (int i = 0; i < personne.getMails().size(); i++) {
 				email = personne.getMails().get(i);
-				System.out.println("Pola "+i+" :"+email.getPolar());
 				email.setPersonne(personne);
 				emailRepository.save(email);
 				email=null;
@@ -198,6 +183,7 @@ public class PersonneController {
 			// photoRepository.save(photo);
 			// }
 
+			
 			for (int i = 0; i < personne.getPersonneFonctions().size(); i++) {
 				personneFonction = personne.getPersonneFonctions().get(i);
 				fonction = fonctionRepository.save(personneFonction.getFonction());
@@ -209,10 +195,8 @@ public class PersonneController {
 				personneFonction=null;
 
 			}
-			// model.addAttribute("personnes", personneRepository.findAll());
 		}
 		return res;
-		// return "personne/list";
 
 	}
 
@@ -243,6 +227,13 @@ public class PersonneController {
 		return uniqueFileName;
 	}
 
+	@RequestMapping(value = "/personne", method = RequestMethod.POST, params = "delete")
+	public String deletePersonne(@RequestParam(required=false) long id) {
+		Personne p=personneRepository.findOne(id);
+		personneRepository.delete(p);
+		return "redirect:personnes";
+	}
+	
 	// @InitBinder
 	// public void initBinder(WebDataBinder binder) {
 	//

@@ -1,9 +1,27 @@
-.error{
+.error {
 	color: #b94a48;
 }
 
-.success{
+.success {
 	color: #7FB948;
 }
 
-.img-center {margin:0 auto;}
+.img-center {
+	margin: 0 auto;
+}
+
+#frm_delete_surnom {
+	display: inline-block;
+}
+
+#frm_delete_mail {
+	display: inline-block;
+}
+
+#frm_delete_PersonneFonction {
+	display: inline-block;
+}
+
+#frm_delete_personne{
+	display: inline-block;
+}

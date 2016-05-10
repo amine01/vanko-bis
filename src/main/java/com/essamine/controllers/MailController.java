@@ -72,13 +72,20 @@ public class MailController {
 		Personne p = personneRepository.findOne(Long.parseLong(personne_id));
 		model.addAttribute("personne", p);
 		if (bResult.hasErrors()) {
-			System.out.println("mail has errors");
 			return new ModelAndView("mail/add");
 		}
 		mail.setPersonne(p);
 		emailRepository.save(mail);
-		return new ModelAndView("personne/view");
-
+		return new ModelAndView("redirect:personne?id="+mail.getPersonne().getId()+"&view");
 	}
+	
+	
+	@RequestMapping(value = "/mail", method = RequestMethod.POST, params = "delete")
+	public String deleteMail(@RequestParam long id) {
+		Mail mail=emailRepository.findOne(id);
+		emailRepository.delete(mail);
+		return "redirect:personne?id="+mail.getPersonne().getId()+"&view";
+	}
+	
 
 }

@@ -80,8 +80,8 @@
 				</div>
 			</spring:bind>
 
-			<button type="submit" class="btn btn-primary">Editer</button>
-			<a class="btn btn-default" href="${personne.URL}&view">Back</a>
+			<button type="submit" class="btn btn-primary">OK</button>
+			<a class="btn btn-default" href="${personne.URL}&view">Retour</a>
 
 		</form:form>
 	</div>

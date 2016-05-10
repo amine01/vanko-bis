@@ -18,92 +18,105 @@
 
 </head>
 <body>
-<div class="container">
+	<div class="container">
 
-	<!-- NavBar -->
-	<nav class="navbar navbar-inverse">
-		<div class="navbar-header">
-			<a class="navbar-brand" href="#">BRAND</a>
-		</div>
-		<div>
-			<ul class="nav navbar-nav">
-				<li class="active"><a href="#">Choix 1</a></li>
-				<li ><a href="#">Choix 2</a></li>
-				<li ><a href="#">Choix 3</a></li>
-				<li ><a href="#">Choix 4</a></li>
-				<li class="dropdown">
-					<a href="#" class="dropdwon-toggle" data-toggle="dropdown">Choix 5 <b class="caret"></b></a>
-					<ul class="dropdown-menu">
-						<li ><a href="#">Choix 5.1</a></li>
-						<li ><a href="#">Choix 5.2</a></li>
-						<li ><a href="#">Choix 5.3</a></li>
-					
-					</ul>
-				
-				</li>
-				
-			</ul>
-		</div>
-	
-	</nav>
-	<!-- Fin NavBar -->
-		
-	<a class="btn btn-primary" href="personne?add">Add Personne</a>
-	<br>
-	<br>
+		<!-- NavBar -->
+		<nav class="navbar navbar-inverse">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">BRAND</a>
+			</div>
+			<div>
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Choix 1</a></li>
+					<li><a href="#">Choix 2</a></li>
+					<li><a href="#">Choix 3</a></li>
+					<li><a href="#">Choix 4</a></li>
+					<li class="dropdown"><a href="#" class="dropdwon-toggle"
+						data-toggle="dropdown">Choix 5 <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Choix 5.1</a></li>
+							<li><a href="#">Choix 5.2</a></li>
+							<li><a href="#">Choix 5.3</a></li>
+
+						</ul></li>
+
+				</ul>
+			</div>
+
+		</nav>
+		<!-- Fin NavBar -->
+
+		<a class="btn btn-primary" href="personne?add">Add Personne</a> <br>
+		<br>
 
 
-		
+
 		<form action="" method="POST" class="form-horizontal">
-				<div id="nom" class="form-group">
-					<div class="col-sm-11">
-						<input type="text" name="worksearch" class="form-control"
-							placeholder="Mot-clé">
-					</div>
-					<div class="col-sm-1">
-					<a class="btn btn-primary" ><span class="glyphicon glyphicon-search"></span></a>
-						<!-- <input type="submit" value="search" class="btn btn-primary"> -->
-					</div>
+			<div id="nom" class="form-group">
+				<div class="col-sm-11">
+					<input type="text" name="worksearch" class="form-control"
+						placeholder="Mot-clé">
 				</div>
-			</form>
-		
-	<c:if test="${personnes.size()>0}">
-		<table class="table table-striped table-bordered table-hover">
-			<thead >
-				<tr class="bg-info text-center" style="text-align: center;">
-					<th >Nom</th>
-					<th >Prénom</th>
-					<th >Date de Naissance</th>
-					<th >Nombre d'Adresse Mail</th>
-					<th >Dernière fonction occupée/Actuelle</th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="personne" items="${personnes}">
-					<tr class="text-center">
-						<td><c:out value="${personne.nom}" /></td>
-						<td><c:out value="${personne.prenom}" /></td>
-						<td><c:out value="${personne.dateNaissance}" /></td>
-						
-						<td><c:out value="${personne.mails.size()}" /></td>
-						<%-- <td><c:out value="${personne.personneFonctions.get(0).fonction.fonction}" /></td> --%>
-						
-						<td>
-							<a class="btn btn-warning btn-xs" href="${personne.URL}&edit" title="Modifier"><span class="glyphicon glyphicon-pencil"></span></a>  
-							<a class="btn btn-primary btn-xs" href="${personne.URL}&view" title="Voir"><span class="glyphicon glyphicon-eye-open"></span></a>
-							<a class="btn btn-danger btn-xs" href="${personne.URL}&delete" title="Supprimer"><span class="glyphicon glyphicon-trash"></span></a>    
-						
-						</td>
+				<div class="col-sm-1">
+					<a class="btn btn-primary"><span
+						class="glyphicon glyphicon-search"></span></a>
+					<!-- <input type="submit" value="search" class="btn btn-primary"> -->
+				</div>
+			</div>
+		</form>
+
+		<c:if test="${personnes.size()>0}">
+			<table class="table table-striped table-bordered table-hover">
+				<thead>
+					<tr class="bg-info text-center" style="text-align: center;">
+						<th>Nom</th>
+						<th>Prénom</th>
+						<th>Date de Naissance</th>
+						<th>Nombre d'Adresse Mail</th>
+						<th>Dernière fonction occupée/Actuelle</th>
+						<th></th>
 					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-		<div id="pagination">
+				</thead>
+				<tbody>
+					<c:forEach var="personne" items="${personnes}">
+						<tr class="text-center">
+							<td><c:out value="${personne.nom}" /></td>
+							<td><c:out value="${personne.prenom}" /></td>
+							<td><c:out value="${personne.dateNaissance}" /></td>
+
+							<td><c:out value="${personne.mails.size()}" /></td>
+							<%-- <td><c:out value="${personne.personneFonctions.get(0).fonction.fonction}" /></td> --%>
+
+							<td><a class="btn btn-warning btn-xs"
+								href="${personne.URL}&edit" title="Modifier"><span
+									class="glyphicon glyphicon-pencil"></span></a> <a
+								class="btn btn-primary btn-xs" href="${personne.URL}&view"
+								title="Voir"><span class="glyphicon glyphicon-eye-open"></span></a>
+								<form method="post" action="${personne.URL}&delete" id="frm_delete_personne">
+									<a data-target="#myModalPersonne" data-toggle="modal"
+										class="btn btn-danger btn-xs" title="Supprimer"><span
+										class="glyphicon glyphicon-trash"></span></a>
+								</form></td>
+								
+								
+						<%-- 		
+								<form method="post" action="${surnom.URL}&delete"
+											id="frm_delete_surnom">
+											<a class="btn btn-danger btn-xs" data-toggle="modal"
+												data-target="#myModalSurnom" id="idBtbnDeleteSurnom"><span
+												class="glyphicon glyphicon-trash"></span></a>
+										</form> --%>
+										
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+			<div id="pagination">
 				<ul class="pagination">
 					<!-- previous -->
 					<c:if test="${currentPage !=1}">
-						<li><a href="personnes?page=${currentPage -1 }"> Précédent</a></li>
+						<li><a href="personnes?page=${currentPage -1 }">
+								Précédent</a></li>
 					</c:if>
 
 					<!-- Liens pagination -->
@@ -124,7 +137,32 @@
 					</c:if>
 				</ul>
 			</div>
-	</c:if>
+		</c:if>
+		<!-- modal PersonneFonction-->
+		<div class="modal fade" id="myModalPersonne" tabindex="-1"
+			role="dialog" aria-labelledby="myModalPersonneLabel"
+			aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">&times;</button>
+						<h4 class="modal-title">Confirmation Suppression</h4>
+					</div>
+					<div class="modal-body">
+						<p>êtes-vous sûr ?</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary"
+							onclick="$('#frm_delete_personne').submit();">Oui</button>
+							
+
+						<button type="button" class="btn btn-default" data-dismiss="modal">Non</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Modal -->
 	</div>
 </body>
 </html>
