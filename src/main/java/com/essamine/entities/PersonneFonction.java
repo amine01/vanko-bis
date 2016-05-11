@@ -2,6 +2,7 @@ package com.essamine.entities;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -26,7 +27,7 @@ public class PersonneFonction extends UrlEntity {
 	@Valid
 	private Personne personne;
 
-	@ManyToOne
+	@ManyToOne(optional=false,cascade=CascadeType.REMOVE)
 	@Valid
 	private Fonction fonction;
 
