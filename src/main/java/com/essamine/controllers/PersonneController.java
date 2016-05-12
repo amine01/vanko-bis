@@ -76,6 +76,17 @@ public class PersonneController {
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat("dd/MM/yyyy"), true, 10));
 	}
 
+	// Debut Datatabel
+
+	@RequestMapping(value = "/personness", method = RequestMethod.GET)
+	public String getPersonnes(Model model) {
+
+		List<Personne> personnes = personneRepository.findAll();
+		model.addAttribute("personnes", personnes);
+		return "personne/listt";
+	}
+	// Fin Datatabel
+
 	// i am here
 	@RequestMapping(value = "/personnes", method = RequestMethod.GET)
 	public String getPersons(Model model, @RequestParam(required = false) Integer page) {
@@ -94,9 +105,7 @@ public class PersonneController {
 		int noOfRecords = personneRepository.findAll().size();
 		// Number Of Pages
 		int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordPerPage);
-		
-	
-		
+
 		model.addAttribute("personnes", personnes.getContent());
 		model.addAttribute("currentPage", pageR);
 		model.addAttribute("recordPerPage", recordPerPage);
@@ -114,7 +123,7 @@ public class PersonneController {
 
 	@RequestMapping(value = "/personne", method = RequestMethod.POST)
 	public String processFormAjax(@ModelAttribute(value = "personne") @Valid Personne personne, BindingResult bResult) {
-		
+
 		if (bResult.hasErrors()) {
 			return "personne/add";
 		} else {
@@ -126,7 +135,7 @@ public class PersonneController {
 	@RequestMapping(value = "/personne.json", method = RequestMethod.POST, params = "add")
 	public @ResponseBody ValidationResponse addPersonne(@ModelAttribute(value = "personne") @Valid Personne personne,
 			BindingResult bResult) throws IOException {
-		
+
 		ValidationResponse res = new ValidationResponse();
 		if (bResult.hasErrors()) {
 			res.setStatus("FAIL");
@@ -140,27 +149,26 @@ public class PersonneController {
 			res.setErrorMessageList(errorMesages);
 		} else {
 			res.setStatus("SUCCESS");
-			
 
-//			//
+			// //
 			personne.setId(personneRepository.save(personne).getId());
 			Surnom surnom;
 			Mail email;
 			PersonneFonction personneFonction;
 			Fonction fonction;
-//
+			//
 			for (int i = 0; i < personne.getSurnoms().size(); i++) {
 				surnom = personne.getSurnoms().get(i);
 				surnom.setPersonne(personne);
 				surnomRepository.save(surnom);
-				surnom=null;
+				surnom = null;
 			}
-//			
+			//
 			for (int i = 0; i < personne.getMails().size(); i++) {
 				email = personne.getMails().get(i);
 				email.setPersonne(personne);
 				emailRepository.save(email);
-				email=null;
+				email = null;
 			}
 
 			// for (int i = 0; i < photos.size(); i++) {
@@ -183,7 +191,6 @@ public class PersonneController {
 			// photoRepository.save(photo);
 			// }
 
-			
 			for (int i = 0; i < personne.getPersonneFonctions().size(); i++) {
 				personneFonction = personne.getPersonneFonctions().get(i);
 				fonction = fonctionRepository.save(personneFonction.getFonction());
@@ -192,7 +199,7 @@ public class PersonneController {
 				personneFonction.setPersonne(personne);
 
 				personneFonctionRepository.save(personneFonction);
-				personneFonction=null;
+				personneFonction = null;
 
 			}
 		}
@@ -228,12 +235,12 @@ public class PersonneController {
 	}
 
 	@RequestMapping(value = "/personne", method = RequestMethod.POST, params = "delete")
-	public String deletePersonne(@RequestParam(required=false) long id) {
-		Personne p=personneRepository.findOne(id);
+	public String deletePersonne(@RequestParam(required = false) long id) {
+		Personne p = personneRepository.findOne(id);
 		personneRepository.delete(p);
 		return "redirect:personnes";
 	}
-	
+
 	// @InitBinder
 	// public void initBinder(WebDataBinder binder) {
 	//
