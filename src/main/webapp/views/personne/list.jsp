@@ -50,17 +50,18 @@
 		<br>
 
 
-
-		<form action="" method="POST" class="form-horizontal">
+		<form action="personnes" method="POST" class="form-horizontal">
 			<div id="nom" class="form-group">
-				<div class="col-sm-11">
-					<input type="text" name="worksearch" class="form-control"
-						placeholder="Mot-clé">
+				<div class="col-sm-10">
+					<input type="hidden" name="search"> <input type="text" value="${keywordsearch}"
+						name="keywordsearch" class="form-control" placeholder="Mot-clé">
 				</div>
-				<div class="col-sm-1">
-					<a class="btn btn-primary"><span
-						class="glyphicon glyphicon-search"></span></a>
-					<!-- <input type="submit" value="search" class="btn btn-primary"> -->
+				<div class="col-sm-2">
+					<button type="submit" class="btn btn-primary">
+						<span class="glyphicon glyphicon-search"></span>
+					</button>
+					<a href="personnes" class="btn btn-primary"><span
+						class="glyphicon glyphicon-remove"></span></a>
 				</div>
 			</div>
 		</form>
@@ -92,21 +93,22 @@
 									class="glyphicon glyphicon-pencil"></span></a> <a
 								class="btn btn-primary btn-xs" href="${personne.URL}&view"
 								title="Voir"><span class="glyphicon glyphicon-eye-open"></span></a>
-								<form method="post" action="${personne.URL}&delete" id="frm_delete_personne">
+								<form method="post" action="${personne.URL}&delete"
+									id="frm_delete_personne">
 									<a data-target="#myModalPersonne" data-toggle="modal"
 										class="btn btn-danger btn-xs" title="Supprimer"><span
 										class="glyphicon glyphicon-trash"></span></a>
 								</form></td>
-								
-								
-						<%-- 		
+
+
+							<%-- 		
 								<form method="post" action="${surnom.URL}&delete"
 											id="frm_delete_surnom">
 											<a class="btn btn-danger btn-xs" data-toggle="modal"
 												data-target="#myModalSurnom" id="idBtbnDeleteSurnom"><span
 												class="glyphicon glyphicon-trash"></span></a>
 										</form> --%>
-										
+
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -155,7 +157,7 @@
 					<div class="modal-footer">
 						<button type="button" class="btn btn-primary"
 							onclick="$('#frm_delete_personne').submit();">Oui</button>
-							
+
 
 						<button type="button" class="btn btn-default" data-dismiss="modal">Non</button>
 					</div>

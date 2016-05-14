@@ -62,6 +62,15 @@ public class Mail extends UrlEntity {
 		// TODO Auto-generated method stub
 		return super.equals(arg0);
 	}
+
+
+
+	@Override
+	public String toString() {
+		return "Mail [email=" + email + ", polar=" + polar + ", personne=" + personne + "]";
+	}
+	
+	
 	
 	
 

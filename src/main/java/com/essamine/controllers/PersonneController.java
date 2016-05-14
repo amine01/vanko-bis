@@ -110,16 +110,43 @@ public class PersonneController {
 		model.addAttribute("currentPage", pageR);
 		model.addAttribute("recordPerPage", recordPerPage);
 		model.addAttribute("noOfPages", noOfPages);
+		model.addAttribute("keywordsearch","");
 
 		return "personne/list";
 	}
+	
+	
+	@RequestMapping(value = "/personnes", params = "search", method = RequestMethod.POST)
+	public String searchPersonne(Model model,@RequestParam(required = false) Integer page,
+			@RequestParam(required=false) String keywordsearch) {
+		
+		System.out.println("search --> " +keywordsearch);
+		
+		int pageR = 1;
 
-	@RequestMapping(value = "/personne", params = "add", method = RequestMethod.GET)
-	public String addPersonne(Model model) {
-		model.addAttribute("personne", new Personne());
+		if (page != null) {
+			if (page <= 0)
+				page = 1;
+			pageR = page;
+		}
+		
+		System.out.println(personneRepository.findPersonneByKey(keywordsearch,new PageRequest(pageR - 1, recordPerPage)).getSize());
+		int noOfRecords =personneRepository.findPersonneByKey(keywordsearch,new PageRequest(pageR - 1, recordPerPage)).getSize();
+		int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordPerPage);
+		
+//		Page<Personne> personnes = personneRepository.findAll(new PageRequest(pageR - 1, recordPerPage));
 
-		return "personne/add";
+		Page<Personne> personnes=personneRepository.findPersonneByKey(keywordsearch,new PageRequest(pageR - 1, recordPerPage));
+		
+		model.addAttribute("personnes", personnes.getContent());
+		model.addAttribute("currentPage", pageR);
+		model.addAttribute("recordPerPage", recordPerPage);
+		model.addAttribute("noOfPages", noOfPages);
+		model.addAttribute("keywordsearch",keywordsearch);
+		
+		return "personne/list";
 	}
+
 
 	@RequestMapping(value = "/personne", method = RequestMethod.POST)
 	public String processFormAjax(@ModelAttribute(value = "personne") @Valid Personne personne, BindingResult bResult) {
@@ -130,6 +157,14 @@ public class PersonneController {
 			return "redirect:personnes";
 		}
 
+	}
+	
+	
+	@RequestMapping(value = "/personne", params = "add", method = RequestMethod.GET)
+	public String addPersonne(Model model) {
+		model.addAttribute("personne", new Personne());
+
+		return "personne/add";
 	}
 
 	@RequestMapping(value = "/personne.json", method = RequestMethod.POST, params = "add")

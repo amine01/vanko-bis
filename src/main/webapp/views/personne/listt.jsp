@@ -25,31 +25,6 @@
 </head>
 <body>
 	<div class="container">
-
-		<!-- NavBar -->
-		<nav class="navbar navbar-inverse">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="#">BRAND</a>
-			</div>
-			<div>
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Choix 1</a></li>
-					<li><a href="#">Choix 2</a></li>
-					<li><a href="#">Choix 3</a></li>
-					<li><a href="#">Choix 4</a></li>
-					<li class="dropdown"><a href="#" class="dropdwon-toggle"
-						data-toggle="dropdown">Choix 5 <b class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Choix 5.1</a></li>
-							<li><a href="#">Choix 5.2</a></li>
-							<li><a href="#">Choix 5.3</a></li>
-
-						</ul></li>
-
-				</ul>
-			</div>
-
-		</nav>
 		
 		<a class="btn btn-primary" href="personne?add">Add Personne</a>
 		 <br>
@@ -119,32 +94,8 @@
 			$(document).ready(function() {
 				
 				$('#entity').DataTable( {
-					"language": {
-						"sProcessing":    "Traitement...",
-						"sLengthMenu":    "Afficher _MENU_ enregistrements",
-				        "sZeroRecords":   "Aucun résultat",
-				        "sEmptyTable":    "Aucune donnée disponible sur ce tableau",
-				        "sInfo":          "Affichage des enregistrements de _START_ al _END_ de un total de _TOTAL_ registros",
-				        "sInfoEmpty":     "Mostrando registros del 0 al 0 de un total de 0 registros",
-				        "sInfoFiltered":  "(filtrer un total de _MAX_ registros)",
-				        "sInfoPostFix":   "",
-				        "sSearch":        "Recherche:",
-				        "sUrl":           "",
-				        "sInfoThousands":  ",",
-				        "sLoadingRecords": "Chargement...",
-				        "oPaginate": {
-				            "sFirst":    "Premier",
-				            "sLast":    "Dernier",
-				            "sNext":    "Suivant",
-				            "sPrevious": "Precedent"
-				        },
-				        
-				        "oAria": {
-				            "sSortAscending":  ": trier par ordre croissant",
-				            "sSortDescending": ": trier par ordre decroissant"
-				        }
-				}
-				
+			        "aLengthMenu": [[3, 9, 15, -1], [3, 9, 15, "All"]],
+
 				})
 		
 			});
