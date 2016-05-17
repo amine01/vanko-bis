@@ -60,8 +60,8 @@
 					<button type="submit" class="btn btn-primary">
 						<span class="glyphicon glyphicon-search"></span>
 					</button>
-					<a href="personnes" class="btn btn-primary"><span
-						class="glyphicon glyphicon-remove"></span></a>
+					<a href="personnes" class="btn btn-default"><span
+						class="glyphicon glyphicon-refresh"></span></a>
 				</div>
 			</div>
 		</form>
@@ -69,13 +69,12 @@
 		<c:if test="${personnes.size()>0}">
 			<table class="table table-striped table-bordered table-hover">
 				<thead>
-					<tr class="bg-info text-center" style="text-align: center;">
-						<th>Nom</th>
-						<th>Prénom</th>
-						<th>Date de Naissance</th>
-						<th>Nombre d'Adresse Mail</th>
-						<th>Dernière fonction occupée/Actuelle</th>
-						<th></th>
+					<tr class="bg-primary">
+						<th style="width:8%" class="text-center">Nom</th>
+						<th style="width:8%" class="text-center">Prénom</th>
+						<th style="width:14%" class="text-center">Mails</th>
+						<th style="width:62%" class="text-center">Postes</th>
+						<th  style="width:8%" class="text-center"></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -83,16 +82,49 @@
 						<tr class="text-center">
 							<td><c:out value="${personne.nom}" /></td>
 							<td><c:out value="${personne.prenom}" /></td>
-							<td><c:out value="${personne.dateNaissance}" /></td>
+							<td>
+								<table style="width: 100%" class="table table-striped table-hover">
+									<thead>
+											<tr class="bg-info">
+												<td class="text-center" style="width: 80%"><strong>E-mail</strong></td>
+												<td class="text-center" style="width: 20%"><strong>Pola.?</strong></td>
+											</tr>
+										</thead>
+									<c:forEach var="mail" items="${personne.mails}">
+										<tr>
+										<td><small>${mail.email}</small></td>
+										<td>${mail.polar}</td>
+										</tr>
+									</c:forEach>
+								</table>
+							</td>
 
-							<td><c:out value="${personne.mails.size()}" /></td>
+							<td>
+								<table style="width: 100%" class="table table-striped table-hover">
+									<thead>
+											<tr class="bg-info">
+												<td  class="text-center"  style="width: 15%"><strong>DE</strong></td>
+												<td  class="text-center"  style="width: 15%"><strong>A</strong></td>
+												<td  class="text-center"  style="width: 70%"><strong>POSTE</strong></td>
+											</tr>
+										</thead>
+									<c:forEach var="personnefonction" items="${personne.personneFonctions}">
+										
+										<tr>
+											<td>${personnefonction.dateDebut}</td>
+											<td>${personnefonction.dateFin}</td>
+											<td><small>${personnefonction.fonction.fonction}</small></td>
+										</tr>
+									</c:forEach>
+								</table>
+							</td>
+
+							<%-- <td><c:out value="${personne.mails.size()}" /></td> --%>
 							<%-- <td><c:out value="${personne.personneFonctions.get(0).fonction.fonction}" /></td> --%>
 
 							<td><a class="btn btn-warning btn-xs"
-								href="${personne.URL}&edit" title="Modifier"><span
-									class="glyphicon glyphicon-pencil"></span></a> <a
-								class="btn btn-primary btn-xs" href="${personne.URL}&view"
-								title="Voir"><span class="glyphicon glyphicon-eye-open"></span></a>
+								href="${personne.URL}&view" title="Voir"><span
+									class="glyphicon glyphicon-pencil"></span></a>
 								<form method="post" action="${personne.URL}&delete"
 									id="frm_delete_personne">
 									<a data-target="#myModalPersonne" data-toggle="modal"
