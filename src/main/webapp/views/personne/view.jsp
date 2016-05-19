@@ -55,8 +55,19 @@
 		</div>
 		<div class="row">
 			<div class="col-sm-4">
-				<img src="http://lorempixel.com/180/130/people/"
-					class="img-circle img-responsive img-center" />
+
+				<c:if test="${personne.photos.size()==0}">
+					<img src="assets/img/empty.jpg"
+						class="img-rounded img-responsive" width="120" height="70"/>
+						</br>
+					<a class="btn btn-success btn-xs"
+						href="photo?id=${personne.id}&add"><span
+						class="glyphicon glyphicon-plus"></span></a>
+				</c:if>
+
+
+
+
 			</div>
 			<div class="col-sm-6 ">
 				<table class="table table-striped">

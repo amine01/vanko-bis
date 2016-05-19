@@ -110,18 +110,18 @@ public class PersonneController {
 		model.addAttribute("currentPage", pageR);
 		model.addAttribute("recordPerPage", recordPerPage);
 		model.addAttribute("noOfPages", noOfPages);
-		model.addAttribute("keywordsearch","");
+		model.addAttribute("keywordsearch", "");
 
 		return "personne/list";
 	}
-	
-	
+
 	@RequestMapping(value = "/personnes", params = "search", method = RequestMethod.POST)
-	public String searchPersonne(Model model,@RequestParam(required = false) Integer page,
-			@RequestParam(required=false) String keywordsearch) {
-		
-		System.out.println("search --> " +keywordsearch);
-		
+	public String searchPersonne(Model model, @RequestParam(required = false) Integer page,
+			@RequestParam(required = false) String keywordsearch) {
+
+		if (keywordsearch.equals("") || keywordsearch.equals(null))
+			return "redirect:personnes";
+
 		int pageR = 1;
 
 		if (page != null) {
@@ -129,24 +129,22 @@ public class PersonneController {
 				page = 1;
 			pageR = page;
 		}
-		
-		System.out.println(personneRepository.findPersonneByKey(keywordsearch,new PageRequest(pageR - 1, recordPerPage)).getSize());
-		int noOfRecords =personneRepository.findPersonneByKey(keywordsearch,new PageRequest(pageR - 1, recordPerPage)).getSize();
-		int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordPerPage);
-		
-//		Page<Personne> personnes = personneRepository.findAll(new PageRequest(pageR - 1, recordPerPage));
 
-		Page<Personne> personnes=personneRepository.findPersonneByKey(keywordsearch,new PageRequest(pageR - 1, recordPerPage));
-		
+		int noOfRecords = personneRepository.findPersonneByKey(keywordsearch, new PageRequest(pageR - 1, recordPerPage))
+				.getSize();
+		int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordPerPage);
+
+		Page<Personne> personnes = personneRepository.findPersonneByKey(keywordsearch,
+				new PageRequest(pageR - 1, recordPerPage));
+
 		model.addAttribute("personnes", personnes.getContent());
 		model.addAttribute("currentPage", pageR);
 		model.addAttribute("recordPerPage", recordPerPage);
 		model.addAttribute("noOfPages", noOfPages);
-		model.addAttribute("keywordsearch",keywordsearch);
-		
+		model.addAttribute("keywordsearch", keywordsearch);
+
 		return "personne/list";
 	}
-
 
 	@RequestMapping(value = "/personne", method = RequestMethod.POST)
 	public String processFormAjax(@ModelAttribute(value = "personne") @Valid Personne personne, BindingResult bResult) {
@@ -158,8 +156,7 @@ public class PersonneController {
 		}
 
 	}
-	
-	
+
 	@RequestMapping(value = "/personne", params = "add", method = RequestMethod.GET)
 	public String addPersonne(Model model) {
 		model.addAttribute("personne", new Personne());

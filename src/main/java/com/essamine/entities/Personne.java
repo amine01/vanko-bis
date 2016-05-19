@@ -37,6 +37,10 @@ public class Personne extends UrlEntity {
 	@Valid
 	private List<Surnom> surnoms;
 	
+	@OneToMany(mappedBy="personne", cascade = CascadeType.ALL, orphanRemoval = true)
+	@Valid
+	private List<Photo> photos;
+	
 	
 	@OneToMany(mappedBy="personne", cascade = CascadeType.ALL, orphanRemoval = true)
 	@Valid
@@ -104,4 +108,13 @@ public class Personne extends UrlEntity {
 		this.personneFonctions = personneFonctions;
 	}
 
+	public List<Photo> getPhotos() {
+		return photos;
+	}
+
+	public void setPhotos(List<Photo> photos) {
+		this.photos = photos;
+	}
+
+	
 }
