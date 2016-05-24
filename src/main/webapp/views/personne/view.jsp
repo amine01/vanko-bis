@@ -124,7 +124,7 @@
 				<table class="table table-striped">
 					<thead>
 						<tr>
-							<th colspan="2" style="text-align: center"><h3
+							<th colspan="2"  class="text-center"><h3
 									style="margin: 0px 0px">Surnoms</h3></th>
 						</tr>
 					</thead>
@@ -133,8 +133,8 @@
 						<tbody>
 							<c:forEach var="surnom" items="${personne.surnoms}">
 								<tr>
-									<td><c:out value="${surnom.surnom}" /></td>
-									<td><a class="btn btn-warning btn-xs"
+									<td style="width: 80%"><c:out value="${surnom.surnom}" /></td>
+									<td style="width: 20%"><a class="btn btn-warning btn-xs"
 										href="${surnom.URL}&edit"><span
 											class="glyphicon glyphicon-pencil"></span></a>
 										<form method="post" action="${surnom.URL}&delete"
@@ -164,7 +164,7 @@
 				<table class="table table-striped">
 					<thead>
 						<tr>
-							<th colspan="3" style="text-align: center;">
+							<th colspan="3" class="text-center">
 								<h3 style="margin: 0px 0px">E-mails</h3>
 							</th>
 						</tr>
@@ -173,9 +173,9 @@
 						<tbody>
 							<c:forEach var="mail" items="${personne.mails}">
 								<tr>
-									<td><c:out value="${mail.email}" /></td>
-									<td><c:out value="${mail.polar}" /></td>
-									<td><a class="btn btn-warning btn-xs"
+									<td style="width: 60%"><c:out value="${mail.email}" /></td>
+									<td style="width: 20%"><c:out value="${mail.polar}" /></td>
+									<td style="width: 20%"><a class="btn btn-warning btn-xs"
 										href="${mail.URL}&edit"><span
 											class="glyphicon glyphicon-pencil"></span></a>
 
@@ -207,14 +207,13 @@
 				<table class="table table-striped">
 					<thead>
 						<tr>
-							<th colspan="3" style="text-align: center;"><h3>Postes
-									Occupés</h3></th>
+							<th colspan="3" style="text-align: center;"><h3>Postes Occupés</h3></th>
 						</tr>
 						<c:if test="${personne.personneFonctions.size()>0}">
 							<tr>
-								<th>Fonction</th>
-								<th>De</th>
-								<th>A</th>
+								<th class="text-center">Fonction</th>
+								<th class="text-center">De</th>
+								<th class="text-center">A</th>
 								<th></th>
 							</tr>
 					</thead>
@@ -222,13 +221,11 @@
 					<tbody>
 						<c:forEach var="personneFonction"
 							items="${personne.personneFonctions}">
-							<tr>
-								<td><c:out value="${personneFonction.fonction.fonction}" /></td>
-								<td><c:out value="${personneFonction.dateDebut}" /></td>
-								<td><c:out value="${personneFonction.dateFin}" /></td>
-								<td><a href="${personneFonction.URL}&edit"
-									class="btn btn-warning btn-xs"><span
-										class="glyphicon glyphicon-pencil"></span></a>
+							<tr class="text-center">
+								<td style="width: 70%"><c:out value="${personneFonction.fonction.fonction}" /></td>
+								<td style="width: 10%"><c:out value="${personneFonction.dateDebut}" /></td>
+								<td style="width: 10%"><c:out value="${personneFonction.dateFin}" /></td>
+								<td style="width: 10%"><a href="${personneFonction.URL}&edit" class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-pencil"></span></a>
 									<form method="post" action="${personneFonction.URL}&delete"
 										id="frm_delete_PersonneFonction">
 

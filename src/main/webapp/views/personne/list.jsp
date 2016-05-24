@@ -72,7 +72,7 @@
 					<tr class="bg-primary">
 						<th style="width:8%" class="text-center">Nom</th>
 						<th style="width:8%" class="text-center">Prénom</th>
-						<th style="width:14%" class="text-center">Mails</th>
+						<th style="width:14%" class="text-center">E-Mails</th>
 						<th style="width:62%" class="text-center">Postes</th>
 						<th  style="width:8%" class="text-center"></th>
 					</tr>
