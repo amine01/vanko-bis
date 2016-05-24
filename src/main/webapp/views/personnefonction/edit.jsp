@@ -61,7 +61,7 @@
 						<form:input type="text" placeholder="Fonction"	path="fonction.fonction" class="form-control" />
 					</div>
 					<div class="col-sm-4">
-						<span class="help-inline"> <form:errors
+						<span class="help-inline error"> <form:errors
 								path="fonction.fonction" />
 						</span>
 					</div>
@@ -77,7 +77,7 @@
 						<form:input type="text" path="dateDebut" class="form-control" />
 					</div>
 					<div class="col-sm-4">
-						<span class="help-inline"> <form:errors
+						<span class="help-inline error"> <form:errors
 								path="dateDebut" />
 						</span>
 					</div>
@@ -94,7 +94,7 @@
 						<form:input type="text" path="dateFin" class="form-control" />
 					</div>
 					<div class="col-sm-4">
-						<span class="help-inline"> <form:errors
+						<span class="help-inline error"> <form:errors
 								path="dateFin" />
 						</span>
 					</div>

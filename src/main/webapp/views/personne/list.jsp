@@ -54,7 +54,7 @@
 			<div id="nom" class="form-group">
 				<div class="col-sm-10">
 					<input type="hidden" name="search"> <input type="text" value="${keywordsearch}"
-						name="keywordsearch" class="form-control" placeholder="Recherche par Nom, Prénom, Surnom, E-mail ou Fonction">
+						name="keywordsearch" class="form-control" placeholder="Recherche par Nom, Prénom, Surnom, E-mail ou Fonction.">
 				</div>
 				<div class="col-sm-2">
 					<button type="submit" class="btn btn-primary">

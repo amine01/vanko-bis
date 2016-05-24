@@ -10,12 +10,12 @@ import org.hibernate.validator.constraints.NotBlank;
 @Entity
 public class Mail extends UrlEntity {
 	@Column
-	@NotBlank
-	@Email(message="Adresse mail n'est pas valide")
+	@NotBlank(message="Cette valeur ne doit pas être vide.")
+	@Email(message="Adresse e-mail n'est pas valide")
 	private String email;
 	
 	@Column
-	@NotBlank
+	@NotBlank(message="Cette valeur ne doit pas être vide.")
 	private String polar;
 	
 	@ManyToOne
@@ -24,8 +24,6 @@ public class Mail extends UrlEntity {
 	public Mail() {
 		
 	}
-
-	
 
 	public String getPolar() {
 		return polar;
@@ -36,7 +34,6 @@ public class Mail extends UrlEntity {
 	public void setPolar(String polar) {
 		this.polar = polar;
 	}
-
 
 
 	public String getEmail() {
@@ -55,22 +52,11 @@ public class Mail extends UrlEntity {
 		this.personne = personne;
 	}
 
-
-
 	@Override
 	public boolean equals(Object arg0) {
 		// TODO Auto-generated method stub
 		return super.equals(arg0);
 	}
-
-
-
-	@Override
-	public String toString() {
-		return "Mail [email=" + email + ", polar=" + polar + ", personne=" + personne + "]";
-	}
-	
-	
 	
 	
 

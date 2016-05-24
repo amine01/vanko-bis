@@ -22,15 +22,15 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Personne extends UrlEntity {
 
 	@Column
-	@NotBlank
+	@NotBlank(message="Cette valeur ne doit pas être vide.")
 	private String nom;
 	@Column
-	@NotBlank
+	@NotBlank(message="Cette valeur ne doit pas être vide.")
 	private String prenom;
 	@Column
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
-	@NotNull
+	@NotNull(message="Cette valeur ne doit pas être vide.")
 	private Date dateNaissance;
 
 	@OneToMany(mappedBy="personne", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -46,12 +46,9 @@ public class Personne extends UrlEntity {
 	@Valid
 	private List<Mail> mails;
 	
-	//ajouter OUI
 	@OneToMany(mappedBy="personne", cascade = CascadeType.REMOVE, orphanRemoval = true)
 	@Valid
 	private List<PersonneFonction> personneFonctions;
-	
-	
 	
 	
 	// Getters & Setters

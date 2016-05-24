@@ -11,13 +11,11 @@ import org.hibernate.validator.constraints.NotBlank;
 public class Surnom extends UrlEntity {
 
 	@Column
-	@NotBlank
+	@NotBlank(message="Cette valeur ne doit pas être vide.")
 	private String surnom;
 	@ManyToOne
 	@Valid
 	private Personne personne;
-	
-	
 	
 	public Surnom() {
 	

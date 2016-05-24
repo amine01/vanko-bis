@@ -54,19 +54,43 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-sm-4">
+			<div class="col-sm-6">
+
+
 
 				<c:if test="${personne.photos.size()==0}">
-					<img src="assets/img/empty.jpg"
-						class="img-rounded img-responsive" width="120" height="70"/>
-						</br>
-					<a class="btn btn-success btn-xs"
-						href="photo?id=${personne.id}&add"><span
-						class="glyphicon glyphicon-plus"></span></a>
+					<img src="assets/img/empty.jpg" class="img-rounded img-responsive"
+						width="120" height="70" />
+
 				</c:if>
-
-
-
+				<c:if test="${personne.photos.size()>0}">
+					<div class="col-md-12">
+						<div class="carousel slide" id="myCarousel">
+							<div class="carousel-inner">
+								<c:forEach var="photo" items="${personne.photos}"
+									varStatus="status">
+									<div class="item <c:if test="${status.first}">active</c:if>">
+										<div class="col-md-4">
+											<a href="#"><img src="images/${photo.nomPhoto}"
+												width="300" height="200">${status.count}</a>
+										</div>
+									</div>
+								</c:forEach>
+							</div>
+							<a class="left carousel-control" href="#myCarousel"
+								data-slide="prev"><i
+								class="glyphicon glyphicon-chevron-left"></i></a> <a
+								class="right carousel-control" href="#myCarousel"
+								data-slide="next"><i
+								class="glyphicon glyphicon-chevron-right"></i></a>
+						</div>
+					</div>
+					<a class="btn btn-warning btn-xs"
+						href="photo?id=${personne.id}&edit"><span
+						class="glyphicon glyphicon-trash"></span></a>
+				</c:if>
+				<a class="btn btn-success btn-xs" href="photo?id=${personne.id}&add"><span
+					class="glyphicon glyphicon-plus"></span></a>
 
 			</div>
 			<div class="col-sm-6 ">
@@ -177,29 +201,9 @@
 
 			</div>
 		</div>
-
-
 		<hr>
-		<%-- 		<div class="row">
-			<div class="col-sm-12 text-center">
-				<c:if test="${personne.personneFonctions.size()>0}">
-					<h3 style="margin: 0px; text-align: center">Postes Occupés</h3>
-				</c:if>
-			</div>
-		</div> --%>
 		<div class="row">
-			<div class="col-sm-8 col-sm-offset-2">
-
-
-				<!-- 	<tr>
-							<th colspan="3" style="text-align: center;">
-								<h3 style="margin: 0px 0px">E-mails</h3>
-							</th>
-						</tr> -->
-
-
-
-
+			<div class="col-sm-10 col-sm-offset-1">
 				<table class="table table-striped">
 					<thead>
 						<tr>

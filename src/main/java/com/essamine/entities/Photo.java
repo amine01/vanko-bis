@@ -4,33 +4,30 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
-import javax.validation.Valid;
 import javax.validation.constraints.AssertTrue;
 
 import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 public class Photo extends UrlEntity {
-	
+
 	@Column
 	private String nomPhoto;
 	@Column
 	private String urlPhoto;
-	
-	@ManyToOne
-	@Valid
+
+	@ManyToOne(optional = false)
 	private Personne personne;
-	
+
 	//
-	
-	//@NotBlank
 	@Transient
-	 MultipartFile file;
-	
-	 @AssertTrue(message = "File must be provided")
-	  public boolean isFileProvided() {
-	    return (file != null) && ( ! file.isEmpty());
-	  }
+	MultipartFile file;
+	//
+//isFileProvided
+	@AssertTrue(message = "File must be provided")
+	public boolean isFileProvided() {
+		return (file != null) && (!file.isEmpty());
+	}
 	//
 
 	// Getters & Setters
@@ -66,9 +63,5 @@ public class Photo extends UrlEntity {
 	public void setFile(MultipartFile file) {
 		this.file = file;
 	}
-
-
-	
-	
 
 }

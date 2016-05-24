@@ -60,7 +60,7 @@
 								path="surnom" placeholder="Surnom" />
 						</div>
 						<div class="col-sm-4">
-							<span class="help-inline"><form:errors path="surnom" /></span>
+							<span class="help-inline error"><form:errors path="surnom" /></span>
 						</div>
 					</div>
 				</spring:bind>

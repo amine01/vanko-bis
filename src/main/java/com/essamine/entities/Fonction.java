@@ -12,11 +12,12 @@ import org.hibernate.validator.constraints.NotBlank;
 @Entity
 public class Fonction extends UrlEntity {
 	@Column
-	@NotBlank
+	@NotBlank(message="Cette valeur ne doit pas être vide.")
 	private String fonction;
 
-	//ajouter
-	@OneToMany(mappedBy="fonction", cascade = CascadeType.REMOVE, orphanRemoval = false)
+	//ajouter+
+	//@Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
+	@OneToMany(mappedBy="fonction",cascade=CascadeType.REMOVE,orphanRemoval=true)
 	private List<PersonneFonction> personneFonctions;
 	
 	
@@ -41,5 +42,13 @@ public class Fonction extends UrlEntity {
 	public void setPersonneFonctions(List<PersonneFonction> personneFonctions) {
 		this.personneFonctions = personneFonctions;
 	}
+
+
+	@Override
+	public String toString() {
+		return fonction;
+	}
+	
+	
 
 }

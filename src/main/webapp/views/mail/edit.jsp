@@ -60,7 +60,7 @@
 							path="email" placeholder="E-mail" />
 					</div>
 					<div class="col-sm-4">
-						<span class="help-inline"><form:errors path="email" /></span>
+						<span class="help-inline error"><form:errors path="email" /></span>
 					</div>
 				</div>
 			</spring:bind>
@@ -75,7 +75,7 @@
 						</form:select>
 					</div>
 					<div class="col-sm-4">
-						<span class="help-inline"><form:errors path="polar" /></span>
+						<span class="help-inline error"><form:errors path="polar" /></span>
 					</div>
 				</div>
 			</spring:bind>

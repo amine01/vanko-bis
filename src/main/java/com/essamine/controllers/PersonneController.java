@@ -1,18 +1,13 @@
 package com.essamine.controllers;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
 
 import javax.validation.Valid;
 
-import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -30,7 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.support.StringMultipartFileEditor;
 
 import com.essamine.entities.Fonction;
 import com.essamine.entities.Mail;
@@ -74,6 +69,7 @@ public class PersonneController {
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat("dd/MM/yyyy"), true, 10));
+		binder.registerCustomEditor(String.class, new StringMultipartFileEditor());
 	}
 
 	// Debut Datatabel
@@ -122,6 +118,8 @@ public class PersonneController {
 		if (keywordsearch.equals("") || keywordsearch.equals(null))
 			return "redirect:personnes";
 
+		// System.out.println("search --> " +keywordsearch);
+
 		int pageR = 1;
 
 		if (page != null) {
@@ -130,9 +128,14 @@ public class PersonneController {
 			pageR = page;
 		}
 
+		// System.out.println(personneRepository.findPersonneByKey(keywordsearch,new
+		// PageRequest(pageR - 1, recordPerPage)).getSize());
 		int noOfRecords = personneRepository.findPersonneByKey(keywordsearch, new PageRequest(pageR - 1, recordPerPage))
 				.getSize();
 		int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordPerPage);
+
+		// Page<Personne> personnes = personneRepository.findAll(new
+		// PageRequest(pageR - 1, recordPerPage));
 
 		Page<Personne> personnes = personneRepository.findPersonneByKey(keywordsearch,
 				new PageRequest(pageR - 1, recordPerPage));
@@ -203,26 +206,6 @@ public class PersonneController {
 				email = null;
 			}
 
-			// for (int i = 0; i < photos.size(); i++) {
-			// photo = personne.getPhotos().get(i);
-			// // upload photo
-			// StringBuilder uniqueFileName = new StringBuilder(
-			// uniqueFileName(photos.get(i).getFile().getOriginalFilename()));
-			// StringBuilder newFileName = new StringBuilder(path +
-			// uniqueFileName);
-			// photo.setNomPhoto(uniqueFileName.toString());
-			// photo.setUrlPhoto(newFileName.toString());
-			// System.out.println("getOriginalFilename : " +
-			// photos.get(i).getFile().getOriginalFilename());
-			// System.out.println("name : " +
-			// photos.get(i).getFile().getName());
-			//
-			// uploadFile(photos.get(i).getFile(), newFileName.toString());
-			// //
-			// photo.setPersonne(personne);
-			// photoRepository.save(photo);
-			// }
-
 			for (int i = 0; i < personne.getPersonneFonctions().size(); i++) {
 				personneFonction = personne.getPersonneFonctions().get(i);
 				fonction = fonctionRepository.save(personneFonction.getFonction());
@@ -245,42 +228,11 @@ public class PersonneController {
 		return "personne/view";
 	}
 
-	public void uploadFile(MultipartFile file, String desti) throws IOException {
-
-		InputStream in = file.getInputStream();
-		File fileDesti = new File(desti);
-		FileUtils.copyInputStreamToFile(in, fileDesti);
-	}
-
-	public String uniqueFileName(String fileName) {
-		Random random = new Random();
-		int randomNumber = random.nextInt(100 - 1) + 1;
-		String fileExtention = null;
-		if (fileName != null)
-			fileExtention = fileName.substring(fileName.length() - 3);
-		Calendar cal = Calendar.getInstance();
-
-		Long uniqueNumber = cal.getTimeInMillis() / 10000;
-		String uniqueFileName = (uniqueNumber + randomNumber) + "." + fileExtention;
-
-		return uniqueFileName;
-	}
-
 	@RequestMapping(value = "/personne", method = RequestMethod.POST, params = "delete")
 	public String deletePersonne(@RequestParam(required = false) long id) {
 		Personne p = personneRepository.findOne(id);
 		personneRepository.delete(p);
 		return "redirect:personnes";
 	}
-
-	// @InitBinder
-	// public void initBinder(WebDataBinder binder) {
-	//
-	//// binder.registerCustomEditor(Date.class, "passport.valid_date", new
-	// CustomDateEditor(dateFormat, true));photos[0].file
-	//
-	// binder.registerCustomEditor(byte[].class,"personne.photos[0].file", new
-	// ByteArrayMultipartFileEditor());
-	// }
 
 }

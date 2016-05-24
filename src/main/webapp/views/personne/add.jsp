@@ -10,11 +10,31 @@
 <!-- CSS -->
 <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 <link rel="stylesheet" href="assets/css/custom_app.css">
+<link rel="stylesheet" href="assets/css/datepicker.css">
 
 <!--JS -->
 <script src="assets/jquery/jquery.js"></script>
 <script src="assets/js/customapp.js"></script>
 <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="assets/js/bootstrap-datepicker.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.1/css/datepicker3.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.1/js/bootstrap-datepicker.js"></script>
+<script>
+	$(function() {
+		$('[class*=" dp"]').datepicker();
+	});
+	
+	
+	/* $(function() {
+		$('[class*=" dp"]').datepicker();
+	}); */
+
+	/* $('body').on('focus', "#dp", function() {
+		$(this).datepicker();
+	}); */
+</script>
 
 </head>
 <body>
@@ -52,7 +72,8 @@
 
 
 		<form:form method="POST" action="personne" id="add-personne-form"
-			class="form-horizontal" commandName="personne">
+			enctype="multipart/form-data" class="form-horizontal"
+			commandName="personne">
 
 			<fieldset>
 				<legend>Personne:</legend>
@@ -90,8 +111,14 @@
 						<label for="dateNaissance" class="col-sm-2 control-label">Date
 							De Naissance</label>
 						<div class="col-sm-6">
-							<form:input id="dateNaissance" class="form-control" type="text"
-								path="dateNaissance" placeholder="Date de Naissance" />
+							<div class="input-group">
+								<form:input class="form-control dp" type="text"
+									path="dateNaissance" placeholder="Date de Naissance"
+									readonly="false" data-date-format="dd/mm/yyyy" />
+								<span class="input-group-addon"><i
+									class="glyphicon glyphicon-calendar"></i></span>
+							</div>
+
 						</div>
 						<div class="col-sm-4">
 							<span class="help-inline"><form:errors
@@ -156,10 +183,10 @@
 						<label for="mails[0].polar" class="col-sm-2 control-label">Polariser
 							?</label>
 						<div class="col-sm-2">
-							<form:select  path="mails[0].polar" class="form-control">
+							<form:select path="mails[0].polar" class="form-control">
 								<form:option value=""></form:option>
-								<form:option value="Oui"/>
-								<form:option value="Non"/>
+								<form:option value="Oui" />
+								<form:option value="Non" />
 							</form:select>
 						</div>
 						<div class="col-sm-8">
@@ -202,9 +229,17 @@
 						<label for="personneFonctions[0].dateDebut"
 							class="col-sm-2 control-label">Date de début</label>
 						<div class="col-sm-6">
-							<form:input type="text" path="personneFonctions[0].dateDebut"
+							<%-- <form:input type="text" path="personneFonctions[0].dateDebut"
 								name="personneFonctions[0].dateDebut" value=""
-								class="form-control" />
+								class="form-control" /> --%>
+							<div class="input-group date">
+								<form:input class="form-control dp" type="text"
+									path="personneFonctions[0].dateDebut"
+									placeholder="Date de Début" readonly="false"
+									data-date-format="dd/mm/yyyy" />
+								<span class="input-group-addon"><i
+									class="glyphicon glyphicon-calendar"></i></span>
+							</div>
 						</div>
 						<div class="col-sm-4">
 							<span class="help-inline"> <form:errors
@@ -215,15 +250,21 @@
 				</spring:bind>
 
 
-
 				<spring:bind path="personneFonctions[0].dateFin">
 					<div id="personneFonctions[0].dateFin" class="form-group">
 						<label for="personneFonctions[0].dateFin"
 							class="col-sm-2 control-label">Date de fin</label>
 						<div class="col-sm-6">
-							<form:input type="text" path="personneFonctions[0].dateFin"
+							<%-- <form:input type="text" path="personneFonctions[0].dateFin"
 								name="personneFonctions[0].dateFin" value=""
-								class="form-control" />
+								class="form-control" /> --%>
+							<div class="input-group date">
+								<form:input class="form-control dp" type="text"
+									path="personneFonctions[0].dateFin" placeholder="Date de fin"
+									readonly="false" data-date-format="dd/mm/yyyy" />
+								<span class="input-group-addon"><i
+									class="glyphicon glyphicon-calendar"></i></span>
+							</div>
 						</div>
 						<div class="col-sm-4">
 							<span class="help-inline"> <form:errors
@@ -232,9 +273,8 @@
 						</div>
 					</div>
 				</spring:bind>
-
-
 			</fieldset>
+
 			<button type="submit" class="btn btn-primary">Save changes</button>
 
 		</form:form>
