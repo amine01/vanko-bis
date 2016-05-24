@@ -24,7 +24,7 @@ public class Photo extends UrlEntity {
 	MultipartFile file;
 	//
 //isFileProvided
-	@AssertTrue(message = "File must be provided")
+	@AssertTrue(message = "Cette valeur ne doit pas être vide.")
 	public boolean isFileProvided() {
 		return (file != null) && (!file.isEmpty());
 	}

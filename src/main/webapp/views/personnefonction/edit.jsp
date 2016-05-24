@@ -15,6 +15,12 @@
 <script src="assets/jquery/jquery.js"></script>
 <script src="assets/js/customapp.js"></script>
 <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="assets/js/bootstrap-datepicker.js"></script>
+<script>
+	$(function() {
+		$('[class*=" dp"]').datepicker();
+	});
+</script>
 
 </head>
 <body>
@@ -55,10 +61,10 @@
 
 			<spring:bind path="fonction.fonction">
 				<div id="fonction.fonction" class="form-group">
-					<label for="fonction.fonction"
-						class="col-sm-2 control-label">Fonction</label>
+					<label for="fonction.fonction" class="col-sm-2 control-label">Fonction</label>
 					<div class="col-sm-6">
-						<form:input type="text" placeholder="Fonction"	path="fonction.fonction" class="form-control" />
+						<form:input type="text" placeholder="Fonction"
+							path="fonction.fonction" class="form-control" />
 					</div>
 					<div class="col-sm-4">
 						<span class="help-inline error"> <form:errors
@@ -71,10 +77,16 @@
 
 			<spring:bind path="dateDebut">
 				<div id="dateDebut" class="form-group">
-					<label for="dateDebut"
-						class="col-sm-2 control-label">Date de début</label>
+					<label for="dateDebut" class="col-sm-2 control-label">Date
+						de début</label>
 					<div class="col-sm-6">
-						<form:input type="text" path="dateDebut" class="form-control" />
+						<div class="input-group date">
+							<form:input class="form-control dp" type="text" path="dateDebut"
+								placeholder="Date de Début" readonly="false"
+								data-date-format="dd/mm/yyyy" />
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-calendar"></i></span>
+						</div>
 					</div>
 					<div class="col-sm-4">
 						<span class="help-inline error"> <form:errors
@@ -88,10 +100,16 @@
 
 			<spring:bind path="dateFin">
 				<div id="dateFin" class="form-group">
-					<label for="dateFin"
-						class="col-sm-2 control-label">Date de fin</label>
+					<label for="dateFin" class="col-sm-2 control-label">Date de
+						fin</label>
 					<div class="col-sm-6">
-						<form:input type="text" path="dateFin" class="form-control" />
+						<div class="input-group date">
+							<form:input class="form-control dp" type="text" path="dateFin"
+								placeholder="Date de Début" readonly="false"
+								data-date-format="dd/mm/yyyy" />
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-calendar"></i></span>
+						</div>
 					</div>
 					<div class="col-sm-4">
 						<span class="help-inline error"> <form:errors
@@ -102,9 +120,11 @@
 			</spring:bind>
 
 
-
-			<button type="submit" class="btn btn-primary">OK</button>
-			<a class="btn btn-default" href="${personne.URL}&view">Retour</a>
+			<button type="submit" class="btn btn-primary">
+				<span class="glyphicon glyphicon-thumbs-up"></span> Enregistrer
+			</button>
+			<a class="btn btn-warning" href="${personne.URL}&view"><span
+				class="glyphicon glyphicon-share-alt"></span> Retour</a>
 
 		</form:form>
 	</div>

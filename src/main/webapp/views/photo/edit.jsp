@@ -66,7 +66,7 @@
  			<tfoot>
 				<tr>
 					<th>
-						<a	href="${personne.URL}&view" class="btn btn-default btn-md">Retour</a>
+						<a class="btn btn-warning" href="${personne.URL}&view"><span class="glyphicon glyphicon-share-alt"></span> Retour</a>
 					</th>
 				</tr>
 			</tfoot>

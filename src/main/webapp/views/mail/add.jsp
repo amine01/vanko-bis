@@ -60,7 +60,7 @@
 							path="email" placeholder="E-mail" />
 					</div>
 					<div class="col-sm-4">
-						<span class="help-inline"><form:errors path="email" /></span>
+						<span class="help-inline error"><form:errors path="email" /></span>
 					</div>
 				</div>
 			</spring:bind>
@@ -76,12 +76,12 @@
 						</form:select>
 					</div>
 					<div class="col-sm-4">
-						<span class="help-inline"><form:errors path="polar" /></span>
+						<span class="help-inline error"><form:errors path="polar" /></span>
 					</div>
 				</div>
 			</spring:bind>
-			<button type="submit" class="btn btn-primary">OK</button>
-			<a class="btn btn-default" href="${personne.URL}&view">Retour</a>
+			<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-thumbs-up"></span> Enregistrer</button>
+			<a class="btn btn-warning" href="${personne.URL}&view"><span class="glyphicon glyphicon-share-alt"></span> Retour</a>
 		</form:form>
 	</div>
 </body>

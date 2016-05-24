@@ -17,23 +17,10 @@
 <script src="assets/js/customapp.js"></script>
 <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="assets/js/bootstrap-datepicker.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.1/css/datepicker3.css" rel="stylesheet" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.1/js/bootstrap-datepicker.js"></script>
 <script>
 	$(function() {
 		$('[class*=" dp"]').datepicker();
 	});
-	
-	
-	/* $(function() {
-		$('[class*=" dp"]').datepicker();
-	}); */
-
-	/* $('body').on('focus', "#dp", function() {
-		$(this).datepicker();
-	}); */
 </script>
 
 </head>
@@ -68,7 +55,7 @@
 
 
 
-		<a class="btn btn-primary" href="personnes">Liste de Recherche</a>
+		<a class="btn btn-primary btn-xs" href="personnes">Liste de Recherche</a>
 
 
 		<form:form method="POST" action="personne" id="add-personne-form"
@@ -134,7 +121,7 @@
 
 				<legend>Surnom:</legend>
 
-				<button class="btn btn-success" type="button"
+				<button class="btn btn-success btn-xs" type="button"
 					onclick="addSurnom(); return false;">
 					<span class="glyphicon glyphicon-plus"></span>
 				</button>
@@ -159,7 +146,7 @@
 			<fieldset id="mails">
 				<legend>Email:</legend>
 
-				<button class="btn btn-success" type="button"
+				<button class="btn btn-success btn-xs" type="button"
 					onclick="addEmail(); return false;">
 					<span class="glyphicon glyphicon-plus"></span>
 				</button>
@@ -201,7 +188,7 @@
 			<!-- sur ses Fonction -->
 			<fieldset id="fonctions">
 				<legend>Fonctions:</legend>
-				<button class="btn btn-success" type="button"
+				<button class="btn btn-success btn-xs" type="button"
 					onclick="addFonction(); return false;">
 					<b><span class="glyphicon glyphicon-plus"></span></b>
 				</button>
@@ -229,9 +216,6 @@
 						<label for="personneFonctions[0].dateDebut"
 							class="col-sm-2 control-label">Date de début</label>
 						<div class="col-sm-6">
-							<%-- <form:input type="text" path="personneFonctions[0].dateDebut"
-								name="personneFonctions[0].dateDebut" value=""
-								class="form-control" /> --%>
 							<div class="input-group date">
 								<form:input class="form-control dp" type="text"
 									path="personneFonctions[0].dateDebut"
@@ -275,7 +259,8 @@
 				</spring:bind>
 			</fieldset>
 
-			<button type="submit" class="btn btn-primary">Save changes</button>
+			<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-thumbs-up"></span> Enregistrer</button>
+			<a class="btn btn-warning" href="personnes"><span class="glyphicon glyphicon-share-alt"></span> Retour</a>
 
 		</form:form>
 	</div>

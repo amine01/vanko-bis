@@ -46,7 +46,7 @@
 		</nav>
 		<!-- Fin NavBar -->
 
-		<a class="btn btn-primary" href="personne?add">Add Personne</a> <br>
+		<a class="btn btn-primary btn-xs" href="personne?add" title="Nouveau"><span class="glyphicon glyphicon-file"></span> Nouveau</a><br>
 		<br>
 
 
@@ -57,10 +57,10 @@
 						name="keywordsearch" class="form-control" placeholder="Recherche par Nom, Prénom, Surnom, E-mail ou Fonction.">
 				</div>
 				<div class="col-sm-2">
-					<button type="submit" class="btn btn-primary">
+					<button type="submit" class="btn btn-primary" title="Recherche">
 						<span class="glyphicon glyphicon-search"></span>
 					</button>
-					<a href="personnes" class="btn btn-default"><span
+					<a href="personnes" class="btn btn-default" title="Rafraîchir"><span
 						class="glyphicon glyphicon-refresh"></span></a>
 				</div>
 			</div>
@@ -124,7 +124,7 @@
 
 							<td><a class="btn btn-warning btn-xs"
 								href="${personne.URL}&view" title="Voir"><span
-									class="glyphicon glyphicon-pencil"></span></a>
+									class="glyphicon glyphicon-edit"></span></a>
 								<form method="post" action="${personne.URL}&delete"
 									id="frm_delete_personne">
 									<a data-target="#myModalPersonne" data-toggle="modal"
@@ -149,8 +149,7 @@
 				<ul class="pagination">
 					<!-- previous -->
 					<c:if test="${currentPage !=1}">
-						<li><a href="personnes?page=${currentPage -1 }">
-								Précédent</a></li>
+						<li><a href="personnes?page=${currentPage -1 }"><span aria-hidden="true">&laquo;</span></a></li>
 					</c:if>
 
 					<!-- Liens pagination -->
@@ -167,7 +166,7 @@
 
 					<!-- next pagination -->
 					<c:if test="${currentPage lt noOfPages}">
-						<li><a href="personnes?page=${currentPage + 1}"> Suivant</a></li>
+						<li><a href="personnes?page=${currentPage + 1}"><span aria-hidden="true">&raquo;</span></a></li>
 					</c:if>
 				</ul>
 			</div>

@@ -49,8 +49,8 @@
 
 		<div class="row">
 			<div class="col-sm-12" style="height: 40px;">
-				<a href="personne?add" class="btn btn-primary">Add Personne</a> <a
-					href="personnes" class="btn btn-primary">Liste des personnes</a>
+				<a href="personne?add" class="btn btn-primary btn-xs" title="Nouveau"><span class="glyphicon glyphicon-file"></span> Nouveau</a> 
+				<a href="personnes" class="btn btn-primary btn-xs" title="Retour à la liste"><span class="glyphicon glyphicon-share-alt"></span> Retour</a>
 			</div>
 		</div>
 		<div class="row">
@@ -85,7 +85,7 @@
 								class="glyphicon glyphicon-chevron-right"></i></a>
 						</div>
 					</div>
-					<a class="btn btn-warning btn-xs"
+					<a class="btn btn-danger btn-xs"
 						href="photo?id=${personne.id}&edit"><span
 						class="glyphicon glyphicon-trash"></span></a>
 				</c:if>
@@ -136,7 +136,7 @@
 									<td style="width: 80%"><c:out value="${surnom.surnom}" /></td>
 									<td style="width: 20%"><a class="btn btn-warning btn-xs"
 										href="${surnom.URL}&edit"><span
-											class="glyphicon glyphicon-pencil"></span></a>
+											class="glyphicon glyphicon-edit"></span></a>
 										<form method="post" action="${surnom.URL}&delete"
 											id="frm_delete_surnom">
 											<a class="btn btn-danger btn-xs" data-toggle="modal"
@@ -177,7 +177,7 @@
 									<td style="width: 20%"><c:out value="${mail.polar}" /></td>
 									<td style="width: 20%"><a class="btn btn-warning btn-xs"
 										href="${mail.URL}&edit"><span
-											class="glyphicon glyphicon-pencil"></span></a>
+											class="glyphicon glyphicon-edit"></span></a>
 
 										<form method="post" action="${mail.URL}&delete"
 											id="frm_delete_mail">
@@ -207,14 +207,14 @@
 				<table class="table table-striped">
 					<thead>
 						<tr>
-							<th colspan="3" style="text-align: center;"><h3>Postes Occupés</h3></th>
+							<th colspan="4" style="text-align: center;"><h3>Postes Occupés</h3></th>
 						</tr>
 						<c:if test="${personne.personneFonctions.size()>0}">
 							<tr>
 								<th class="text-center">Fonction</th>
 								<th class="text-center">De</th>
 								<th class="text-center">A</th>
-								<th></th>
+								<th class="text-center"></th>
 							</tr>
 					</thead>
 
@@ -225,10 +225,9 @@
 								<td style="width: 70%"><c:out value="${personneFonction.fonction.fonction}" /></td>
 								<td style="width: 10%"><c:out value="${personneFonction.dateDebut}" /></td>
 								<td style="width: 10%"><c:out value="${personneFonction.dateFin}" /></td>
-								<td style="width: 10%"><a href="${personneFonction.URL}&edit" class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-pencil"></span></a>
+								<td style="width: 10%"><a href="${personneFonction.URL}&edit" class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-edit"></span></a>
 									<form method="post" action="${personneFonction.URL}&delete"
 										id="frm_delete_PersonneFonction">
-
 										<a data-toggle="modal" data-target="#myModalPersonneFonction"
 											class="btn btn-danger btn-xs"><span
 											class="glyphicon glyphicon-trash"></span></a>

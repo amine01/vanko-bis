@@ -35,7 +35,7 @@ public class PersonneFonction extends UrlEntity {
 	@Column
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
-	@NotNull
+	@NotNull(message="Cette valeur ne doit pas être vide.")
 	private Date dateFin;
 	
 

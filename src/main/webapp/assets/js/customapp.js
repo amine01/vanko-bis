@@ -87,7 +87,7 @@ function addSurnom() {
 	// lien de suppression du variable
 	countSurnom++;
 	var removeSurnom = document.createElement('a');
-	removeSurnom.className = "btn btn-danger";
+	removeSurnom.className = "btn btn-danger btn-xs";
 	removeSurnom.href = "";
 	removeSurnom.innerHTML = "<span class='glyphicon glyphicon-minus'></span>";
 
@@ -119,7 +119,7 @@ function addPhoto() {
 	countPhoto++;
 	var removePhoto = document.createElement('a');
 	removePhoto.appendChild(document.createTextNode("remove"));
-	removePhoto.className = "btn btn-danger";
+	removePhoto.className = "btn btn-danger btn-xs";
 	removePhoto.href = "#";
 	removePhoto.innerHTML = "<span class='glyphicon glyphicon-minus'></span>";
 
@@ -157,7 +157,7 @@ function addEmail() {
 	// lien de suppression du variable
 	countEmail++;
 	var removeEmail = document.createElement('a');
-	removeEmail.className = "btn btn-danger";
+	removeEmail.className = "btn btn-danger btn-xs";
 	removeEmail.href = "#";
 	removeEmail.innerHTML = "<span class='glyphicon glyphicon-minus'></span>";
 
@@ -212,7 +212,7 @@ function addFonction() {
 	countFonction++;
 	var removeFonctionPersonne = document.createElement('a');
 	removeFonctionPersonne.href = "#";
-	removeFonctionPersonne.className = "btn btn-danger";
+	removeFonctionPersonne.className = "btn btn-danger btn-xs";
 	removeFonctionPersonne.innerHTML = "<span class='glyphicon glyphicon-minus'></span>";
 
 	divdf.appendChild(removeFonctionPersonne);

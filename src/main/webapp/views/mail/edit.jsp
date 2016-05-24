@@ -80,8 +80,8 @@
 				</div>
 			</spring:bind>
 
-			<button type="submit" class="btn btn-primary">OK</button>
-			<a class="btn btn-default" href="${personne.URL}&view">Retour</a>
+			<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-thumbs-up"></span> Enregistrer</button>
+			<a class="btn btn-warning" href="${personne.URL}&view"><span class="glyphicon glyphicon-share-alt"></span> Retour</a>
 
 		</form:form>
 	</div>
