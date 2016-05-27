@@ -19,8 +19,6 @@
 		<property name="datasourceBean">
 			<bean class="org.hsqldb.jdbc.JDBCDataSource">
 				<property name="url" value="${urlbase}" />
-
-
 			</bean>
 		</property>
 	</bean>

@@ -21,29 +21,7 @@
 	<div class="container">
 
 		<!-- NavBar -->
-		<nav class="navbar navbar-inverse">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="#">BRAND</a>
-			</div>
-			<div>
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Choix 1</a></li>
-					<li><a href="#">Choix 2</a></li>
-					<li><a href="#">Choix 3</a></li>
-					<li><a href="#">Choix 4</a></li>
-					<li class="dropdown"><a href="#" class="dropdwon-toggle"
-						data-toggle="dropdown">Choix 5 <b class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Choix 5.1</a></li>
-							<li><a href="#">Choix 5.2</a></li>
-							<li><a href="#">Choix 5.3</a></li>
-
-						</ul></li>
-
-				</ul>
-			</div>
-
-		</nav>
+		<%@ include file="/views/menu/menu.jsp"%>
 		<!-- Fin NavBar -->
 
 		<form:form method="POST" action="mail" class="form-horizontal"
@@ -70,7 +48,7 @@
 						?</label>
 					<div class="col-sm-6">
 						<form:select name="polariser" path="polar" class="form-control">
-						<form:option value="" />
+							<form:option value="" />
 							<form:option value="Oui" />
 							<form:option value="Non" />
 						</form:select>
@@ -80,8 +58,11 @@
 					</div>
 				</div>
 			</spring:bind>
-			<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-thumbs-up"></span> Enregistrer</button>
-			<a class="btn btn-warning" href="${personne.URL}&view"><span class="glyphicon glyphicon-share-alt"></span> Retour</a>
+			<button type="submit" class="btn btn-primary">
+				<span class="glyphicon glyphicon-thumbs-up"></span> Enregistrer
+			</button>
+			<a class="btn btn-warning" href="${personne.URL}&view"><span
+				class="glyphicon glyphicon-share-alt"></span> Retour</a>
 		</form:form>
 	</div>
 </body>

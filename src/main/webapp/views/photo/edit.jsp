@@ -19,31 +19,8 @@
 </head>
 <body>
 	<div class="container">
-
 		<!-- NavBar -->
-		<nav class="navbar navbar-inverse">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="#">BRAND</a>
-			</div>
-			<div>
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Choix 1</a></li>
-					<li><a href="#">Choix 2</a></li>
-					<li><a href="#">Choix 3</a></li>
-					<li><a href="#">Choix 4</a></li>
-					<li class="dropdown"><a href="#" class="dropdwon-toggle"
-						data-toggle="dropdown">Choix 5 <b class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Choix 5.1</a></li>
-							<li><a href="#">Choix 5.2</a></li>
-							<li><a href="#">Choix 5.3</a></li>
-
-						</ul></li>
-
-				</ul>
-			</div>
-
-		</nav>
+		<%@ include file="/views/menu/menu.jsp"%>
 		<!-- Fin NavBar -->
 
 		<table class="table table-striped">
@@ -52,7 +29,8 @@
 				<tbody>
 					<c:forEach var="photo" items="${personne.photos}">
 						<tr>
-							<td><img src="images/${photo.nomPhoto}"	width="250" height="150"></td>
+							<td><img src="images/${photo.nomPhoto}" width="250"
+								height="150"></td>
 							<td><form method="post" action="${photo.URL}&delete"
 									id="frm_delete_photo">
 									<a class="btn btn-danger btn-xs" data-toggle="modal"
@@ -63,20 +41,18 @@
 					</c:forEach>
 				</tbody>
 			</c:if>
- 			<tfoot>
+			<tfoot>
 				<tr>
-					<th>
-						<a class="btn btn-warning" href="${personne.URL}&view"><span class="glyphicon glyphicon-share-alt"></span> Retour</a>
-					</th>
+					<th><a class="btn btn-warning" href="${personne.URL}&view"><span
+							class="glyphicon glyphicon-share-alt"></span> Retour</a></th>
 				</tr>
 			</tfoot>
 		</table>
-		
-		
+
+
 		<!-- modal photo-->
-		<div class="modal fade" id="myModalPhoto" tabindex="-1"
-			role="dialog" aria-labelledby="myModalPersonneFonctionLabel"
-			aria-hidden="true">
+		<div class="modal fade" id="myModalPhoto" tabindex="-1" role="dialog"
+			aria-labelledby="myModalPersonneFonctionLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">

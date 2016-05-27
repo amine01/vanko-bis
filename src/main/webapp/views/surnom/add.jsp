@@ -21,48 +21,27 @@
 	<div class="container">
 
 		<!-- NavBar -->
-		<nav class="navbar navbar-inverse">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="#">BRAND</a>
-			</div>
-			<div>
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Choix 1</a></li>
-					<li><a href="#">Choix 2</a></li>
-					<li><a href="#">Choix 3</a></li>
-					<li><a href="#">Choix 4</a></li>
-					<li class="dropdown"><a href="#" class="dropdwon-toggle"
-						data-toggle="dropdown">Choix 5 <b class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Choix 5.1</a></li>
-							<li><a href="#">Choix 5.2</a></li>
-							<li><a href="#">Choix 5.3</a></li>
-
-						</ul></li>
-
-				</ul>
-			</div>
-
-		</nav>
+		<%@ include file="/views/menu/menu.jsp"%>
 		<!-- Fin NavBar -->
 
-		<form:form method="POST" action="surnom" class="form-horizontal" commandName="surnom">
-			
-			<input type="hidden" name="add"> 
-			<input type="hidden" name="personne_id" value="${personne.id}"> 
-		
-				<spring:bind path="surnom">
-					<div id="surnom" class="form-group">
-						<label for="surnom" class="col-sm-2 control-label">Surnom</label>
-						<div class="col-sm-6">
-							<form:input id="surnom" class="form-control" type="text"
-								path="surnom" placeholder="Surnom" />
-						</div>
-						<div class="col-sm-4">
-							<span class="help-inline"><form:errors path="surnom" /></span>
-						</div>
+		<form:form method="POST" action="surnom" class="form-horizontal"
+			commandName="surnom">
+
+			<input type="hidden" name="add">
+			<input type="hidden" name="personne_id" value="${personne.id}">
+
+			<spring:bind path="surnom">
+				<div id="surnom" class="form-group">
+					<label for="surnom" class="col-sm-2 control-label">Surnom</label>
+					<div class="col-sm-6">
+						<form:input id="surnom" class="form-control" type="text"
+							path="surnom" placeholder="Surnom" />
 					</div>
-				</spring:bind>
+					<div class="col-sm-4">
+						<span class="help-inline"><form:errors path="surnom" /></span>
+					</div>
+				</div>
+			</spring:bind>
 			<button type="submit" class="btn btn-primary">OK</button>
 			<a class="btn btn-default" href="${personne.URL}&view">Retour</a>
 

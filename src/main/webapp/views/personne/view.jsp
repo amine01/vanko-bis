@@ -20,37 +20,18 @@
 
 
 		<!-- NavBar -->
-		<nav class="navbar navbar-inverse">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="#">BRAND</a>
-			</div>
-			<div>
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Choix 1</a></li>
-					<li><a href="#">Choix 2</a></li>
-					<li><a href="#">Choix 3</a></li>
-					<li><a href="#">Choix 4</a></li>
-					<li class="dropdown"><a href="#" class="dropdwon-toggle"
-						data-toggle="dropdown">Choix 5 <b class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Choix 5.1</a></li>
-							<li><a href="#">Choix 5.2</a></li>
-							<li><a href="#">Choix 5.3</a></li>
-
-						</ul></li>
-
-				</ul>
-			</div>
-
-		</nav>
+		<%@ include file="/views/menu/menu.jsp"%>
 		<!-- Fin NavBar -->
 
 
 
 		<div class="row">
 			<div class="col-sm-12" style="height: 40px;">
-				<a href="personne?add" class="btn btn-primary btn-xs" title="Nouveau"><span class="glyphicon glyphicon-file"></span> Nouveau</a> 
-				<a href="personnes" class="btn btn-primary btn-xs" title="Retour à la liste"><span class="glyphicon glyphicon-share-alt"></span> Retour</a>
+				<a href="personne?add" class="btn btn-primary btn-xs"
+					title="Nouveau"><span class="glyphicon glyphicon-file"></span>
+					Nouveau</a> <a href="personnes" class="btn btn-primary btn-xs"
+					title="Retour à la liste"><span
+					class="glyphicon glyphicon-share-alt"></span> Retour</a>
 			</div>
 		</div>
 		<div class="row">
@@ -124,7 +105,7 @@
 				<table class="table table-striped">
 					<thead>
 						<tr>
-							<th colspan="2"  class="text-center"><h3
+							<th colspan="2" class="text-center"><h3
 									style="margin: 0px 0px">Surnoms</h3></th>
 						</tr>
 					</thead>
@@ -207,7 +188,8 @@
 				<table class="table table-striped">
 					<thead>
 						<tr>
-							<th colspan="4" style="text-align: center;"><h3>Postes Occupés</h3></th>
+							<th colspan="4" style="text-align: center;"><h3>Postes
+									Occupés</h3></th>
 						</tr>
 						<c:if test="${personne.personneFonctions.size()>0}">
 							<tr>
@@ -222,10 +204,16 @@
 						<c:forEach var="personneFonction"
 							items="${personne.personneFonctions}">
 							<tr class="text-center">
-								<td style="width: 70%"><c:out value="${personneFonction.fonction.fonction}" /></td>
-								<td style="width: 10%"><c:out value="${personneFonction.dateDebut}" /></td>
-								<td style="width: 10%"><c:out value="${personneFonction.dateFin}" /></td>
-								<td style="width: 10%"><a href="${personneFonction.URL}&edit" class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-edit"></span></a>
+								<td style="width: 70%"><c:out
+										value="${personneFonction.fonction.fonction}" /></td>
+								<td style="width: 10%"><c:out
+										value="${personneFonction.dateDebut}" /></td>
+								<td style="width: 10%"><c:out
+										value="${personneFonction.dateFin}" /></td>
+								<td style="width: 10%"><a
+									href="${personneFonction.URL}&edit"
+									class="btn btn-warning btn-xs"><span
+										class="glyphicon glyphicon-edit"></span></a>
 									<form method="post" action="${personneFonction.URL}&delete"
 										id="frm_delete_PersonneFonction">
 										<a data-toggle="modal" data-target="#myModalPersonneFonction"
