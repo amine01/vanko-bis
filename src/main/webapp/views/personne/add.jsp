@@ -30,8 +30,9 @@
 		<!-- NavBar -->
 		<%@ include file="/views/menu/menu.jsp"%>
 		<!-- Fin NavBar -->
-		<a class="btn btn-primary btn-xs" href="personnes">Liste de
-			Recherche</a>
+		<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+		<a class="btn btn-primary btn-xs" href="personnes">Liste de Recherche</a>
+
 
 
 		<form:form method="POST" action="personne" id="add-personne-form"

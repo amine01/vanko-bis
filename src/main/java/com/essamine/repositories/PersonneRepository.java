@@ -15,10 +15,10 @@ public interface PersonneRepository extends JpaRepository<Personne, Long>{
 			+ "INNER JOIN p.personneFonctions pf "
 			+ "JOIN p.mails mls "
 			+ "JOIN p.surnoms srms "
-			+ "where mls.email like CONCAT('%',:key,'%') "
-			+ "OR p.nom like CONCAT('%',:key,'%') "
-			+ "OR p.prenom like CONCAT('%',:key,'%') "
-			+ "OR pf.fonction.fonction like CONCAT('%',:key,'%')") 
+			+ "where lower(mls.email) like lower(CONCAT('%',:key,'%')) "
+			+ "OR lower(p.nom) like lower(CONCAT('%',:key,'%')) "
+			+ "OR lower(p.prenom) like lower(CONCAT('%',:key,'%')) "
+			+ "OR lower(pf.fonction.fonction) like lower(CONCAT('%',:key,'%'))") 
     Page<Personne> findPersonneByKey(@Param("key") String key,Pageable pageable);
 
 }
