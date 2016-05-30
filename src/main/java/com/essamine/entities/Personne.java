@@ -12,7 +12,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -30,7 +29,7 @@ public class Personne extends UrlEntity {
 	@Column
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
-	@NotNull(message="Cette valeur ne doit pas être vide.")
+//	@NotNull(message="Cette valeur ne doit pas être vide.")
 	private Date dateNaissance;
 
 	@OneToMany(mappedBy="personne", cascade = CascadeType.ALL, orphanRemoval = true)

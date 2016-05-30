@@ -12,7 +12,7 @@ import org.hibernate.validator.constraints.NotBlank;
 @Entity
 public class Fonction extends UrlEntity {
 	@Column
-	@NotBlank(message="Cette valeur ne doit pas être vide.")
+	@NotBlank(message = "Cette valeur ne doit pas être vide.")
 	private String fonction;
 
 	//ajouter+

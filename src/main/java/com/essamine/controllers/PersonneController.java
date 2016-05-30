@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.support.StringMultipartFileEditor;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.essamine.entities.Fonction;
 import com.essamine.entities.Mail;
@@ -233,6 +234,36 @@ public class PersonneController {
 		Personne p = personneRepository.findOne(id);
 		personneRepository.delete(p);
 		return "redirect:personnes";
+	}
+
+	@RequestMapping(value = "/personne", method = RequestMethod.GET, params = "edit")
+	public String getPersonnetoEdit(@RequestParam long id, Model model) {
+		//	Personne p = personneRepository.findOne(id);
+		model.addAttribute("personne", personneRepository.findOne(id));
+		// model.addAttribute("personne", s.getPersonne());
+		return "personne/edit";
+	}
+	
+//	@RequestMapping(value = "/surnom", method = RequestMethod.POST, params = "edit")
+//	public ModelAndView editSelectedSurnom(@RequestParam(required = false) String personne_id,
+//			@ModelAttribute(value = "surnom") @Valid Surnom surnom,
+//			BindingResult bResult,Model model) {
+//@RequestParam(required = false) String personne_id, 
+	@RequestMapping(value = "/personne", method = RequestMethod.POST, params = "edit")
+	public ModelAndView editPersonne(@ModelAttribute(value = "personne") @Valid Personne personne, BindingResult bResult) {
+		System.out.println("edit post personne");
+		Personne p = personneRepository.findOne(personne.getId());
+		//model.addAttribute("personne", p);
+
+		if (bResult.hasErrors()) {
+			System.out.println("has error"+bResult);
+			return new ModelAndView("personne/edit");
+		}
+		p.setNom(personne.getNom());
+		p.setPrenom(personne.getPrenom());
+		p.setDateNaissance(personne.getDateNaissance());
+		personneRepository.save(p);
+		return new ModelAndView("redirect:personne?id=" + p.getId() + "&view");
 	}
 
 }

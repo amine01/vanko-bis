@@ -92,6 +92,13 @@
 							<td></td>
 						</tr>
 					</tbody>
+					<tfoot>
+						<tr>
+							<th colspan="3" style="text-align: center"><a
+								href="personne?id=${personne.id}&edit" class="btn btn-warning btn-xs"><span
+									class="glyphicon glyphicon-edit"></span></a></th>
+						</tr>
+					</tfoot>
 				</table>
 			</div>
 		</div>

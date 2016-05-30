@@ -17,12 +17,9 @@
 			<c:set var="url" value="${fn:substring(absoluteUrl,13,length)}" />
 
 			<ul class="nav navbar-nav">
-				<li <c:if test="${url=='personne/list.jsp'}">class="active"</c:if>><a
-					href="personnes">Accueil</a></li>
-				<li class="dropdown"
-					<c:if test="${url=='/personnes'}">class="active"</c:if>><a
-					href="#" class="dropdwon-toggle" data-toggle="dropdown">Pola.<b
-						class="caret"></b></a>
+				<li <c:if test="${url=='personne/list.jsp'}">class="active"</c:if>><a href="personnes">Accueil</a></li>
+				<li  <c:if test="${(url=='personne/list.jsp') || (url=='personne/add.jsp')}">class="dropdown active"</c:if>><a href="#" class="dropdwon-toggle" data-toggle="dropdown">Pola.
+				<b class="caret"></b></a>
 					<ul class="dropdown-menu">
 						<li <c:if test="${url=='personne/add.jsp'}">class="active"</c:if>><a
 							href="personne?add">Nouveau</a></li>

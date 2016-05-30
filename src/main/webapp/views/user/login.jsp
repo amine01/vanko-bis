@@ -45,7 +45,7 @@
 
 						<div class="input-group">
 							<c:if test="${not empty param.error}">
-								<div class="error"> Erreur d'identification. Reason : ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</div>
+								<div class="error"> Erreur d'identification : ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</div>
 							</c:if>
 						</div>
 

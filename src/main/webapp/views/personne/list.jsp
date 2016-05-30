@@ -48,8 +48,8 @@
 			<table class="table table-striped table-bordered table-hover">
 				<thead>
 					<tr class="bg-primary">
-						<th style="width:8%" class="text-center">Nom</th>
-						<th style="width:8%" class="text-center">Prénom</th>
+						<th style="width:16%" class="text-center">Nom Complét</th>
+						<!-- <th style="width:8%" class="text-center">Prénom</th> -->
 						<th style="width:14%" class="text-center">E-Mails</th>
 						<th style="width:62%" class="text-center">Postes</th>
 						<th  style="width:8%" class="text-center"></th>
@@ -58,8 +58,7 @@
 				<tbody>
 					<c:forEach var="personne" items="${personnes}">
 						<tr class="text-center">
-							<td><c:out value="${personne.nom}" /></td>
-							<td><c:out value="${personne.prenom}" /></td>
+							<td><c:out value="${personne.nom} ${personne.prenom}" /></td>
 							<td>
 								<table style="width: 100%" class="table table-striped table-hover">
 									<thead>

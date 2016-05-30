@@ -77,7 +77,7 @@
 						<div class="col-sm-6">
 							<div class="input-group">
 								<form:input class="form-control dp" type="text"
-									path="dateNaissance" placeholder="Date de Naissance"
+									path="dateNaissance" placeholder="dd/mm/yyyy"
 									readonly="false" data-date-format="dd/mm/yyyy" />
 								<span class="input-group-addon"><i
 									class="glyphicon glyphicon-calendar"></i></span>
@@ -196,7 +196,7 @@
 							<div class="input-group date">
 								<form:input class="form-control dp" type="text"
 									path="personneFonctions[0].dateDebut"
-									placeholder="Date de Début" readonly="false"
+									placeholder="dd/mm/yyyy" readonly="false"
 									data-date-format="dd/mm/yyyy" />
 								<span class="input-group-addon"><i
 									class="glyphicon glyphicon-calendar"></i></span>
@@ -221,7 +221,7 @@
 								class="form-control" /> --%>
 							<div class="input-group date">
 								<form:input class="form-control dp" type="text"
-									path="personneFonctions[0].dateFin" placeholder="Date de fin"
+									path="personneFonctions[0].dateFin" placeholder="dd/mm/yyyy"
 									readonly="false" data-date-format="dd/mm/yyyy" />
 								<span class="input-group-addon"><i
 									class="glyphicon glyphicon-calendar"></i></span>

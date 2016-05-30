@@ -15,7 +15,7 @@ public class Mail extends UrlEntity {
 	private String email;
 	
 	@Column
-	@NotBlank(message="Cette valeur ne doit pas être vide.")
+//	@NotBlank(message="Cette valeur ne doit pas être vide.")
 	private String polar;
 	
 	@ManyToOne
